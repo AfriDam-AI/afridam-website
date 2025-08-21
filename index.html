@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriDam AI - The Future of African Skincare</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts: Inter and Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles & Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-charcoal': '#1C1A19',
+                        'brand-sand': '#F7F3EE',
+                        'brand-terracotta': '#E1784F',
+                        'brand-turquoise': '#4DB6AC',
+                        'brand-text-dark': '#1C1A19',
+                        'brand-text-light': '#D4D2D0',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #1C1A19;
+            color: #D4D2D0;
+        }
+        
+        .textured-bg {
+             background-color: #161413;
+             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23929292' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-glow:hover {
+            box-shadow: 0 0 25px 0 rgba(225, 120, 79, 0.5);
+        }
+
+        .gradient-text {
+            background: -webkit-linear-gradient(45deg, #E1784F, #F0A287);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #responseDialog {
+            border: none;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            width: 300px;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        #responseDialog::backdrop {
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* success style */
+        #responseDialog.success {
+            border-top: 6px solid #28a745;
+        }
+        #responseDialog.success p {
+            color: rgb(77 182 172 / var(--tw-text-opacity, 1));
+        }
+
+        /* error style */
+        #responseDialog.error {
+            border-top: 6px solid #dc3545;
+        }
+        #responseDialog.error p {
+            color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+        }
+
+        #closeDialog {
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body class="font-inter">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-5">
+            <div class="bg-brand-charcoal/60 backdrop-blur-lg rounded-full px-6 py-3 flex justify-between items-center border border-white/10 shadow-2xl shadow-black/20">
+                 <a href="https://www.afridamai.com" class="flex items-center space-x-3">
+                    <!-- New SVG Logo -->
+                    <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text fill="#F7F3EE" font-family="Poppins, sans-serif" font-size="24" font-weight="800" letter-spacing="0.02em">
+                            <tspan x="0" y="24">A</tspan>
+                            <tspan x="18" y="24">friDam</tspan>
+                        </text>
+                        <rect x="5.5" y="15.5" width="8" height="3" fill="#E1784F"/>
+                        <text fill="#4DB6AC" font-family="Poppins, sans-serif" font-size="24" font-weight="800" letter-spacing="0.02em" x="98" y="24">AI</text>
+                    </svg>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#mission" class="text-brand-text-light hover:text-brand-sand transition duration-300">Our Mission</a>
+                    <a href="#features" class="text-brand-text-light hover:text-brand-sand transition duration-300">Features</a>
+                    <a href="#founder" class="text-brand-text-light hover:text-brand-sand transition duration-300">Founder</a>
+                </nav>
+                <a href="#contact" class="hidden md:block bg-brand-terracotta text-white font-bold px-6 py-2.5 rounded-full hover:bg-opacity-90 transition shadow-lg cta-glow">Book a Meeting</a>
+                <button id="mobile-menu-button" class="md:hidden text-brand-sand focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mx-6 mt-2 bg-brand-charcoal/80 backdrop-blur-lg rounded-xl p-4 border border-white/10">
+             <a href="#mission" class="block py-2 text-brand-text-light hover:text-brand-sand transition">Our Mission</a>
+             <a href="#features" class="block py-2 text-brand-text-light hover:text-brand-sand transition">Features</a>
+             <a href="#founder" class="block py-2 text-brand-text-light hover:text-brand-sand transition">Founder</a>
+             <a href="#contact" class="block mt-2 bg-brand-terracotta text-white font-bold text-center py-2 rounded-full cta-glow">Book a Meeting</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+             <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-brand-charcoal/60 z-10"></div>
+                <img src="images/hero-bg.jpg" class="w-full h-full object-cover" alt="AI Generated Image: A group of diverse African people in a futuristic setting">
+            </div>
+
+            <div class="relative z-20 container mx-auto px-6 text-center text-white reveal">
+                <h1 class="text-5xl md:text-8xl font-black font-poppins leading-tight tracking-tight">
+                    AI That <span class="gradient-text">Understands</span><br> African Skin
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-brand-text-light">
+                    Join the revolution to transform skin health for 500M+ underserved Africans with culturally-aware, precision technology.
+                </p>
+                <!-- Waitlist Form -->
+                <div class="mt-12 max-w-lg mx-auto">
+                    <form id="waitlist" name="waitlist" method="POST" action="/thank-you.html" data-netlify="true" class="flex flex-col gap-4 items-center bg-brand-charcoal/50 backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                        <input type="email" name="email" placeholder="youremail@yourdomain.com" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
+                        <input type="first_name" name="first_name" placeholder="First name" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
+                        <input type="other_names" name="other_names" placeholder="Other names" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
+                        <button type="submit" class="w-full sm:w-auto bg-brand-terracotta text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition duration-300 shadow-2xl shadow-brand-terracotta/20 transform hover:scale-105 cta-glow">
+                            Get Early Access
+                        </button>
+                    </form>
+                    <p class="text-xs text-brand-text-light mt-3">Be the first to know when we launch. No spam, ever.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. "Our Mission" Section -->
+        <section id="mission" class="py-32 textured-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <span class="font-bold gradient-text uppercase tracking-widest">Our Mission</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold font-poppins text-brand-sand mt-4">Addressing the Core Challenges in African Skincare</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Problem 1 -->
+                    <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-brand-sand">🏥 Lack of Access</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> 1 dermatologist for every 1M+ people, leaving rural areas with no specialists.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> Instant AI-powered skin analysis from any phone, closing the access gap.</p>
+                    </div>
+                     <!-- Problem 2 -->
+                    <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold text-brand-sand">🎯 Pervasive Misdiagnosis</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> Global AI models fail on darker skin, leading to critical errors.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> Our model is trained on African skin for accurate, bias-free results.</p>
+                    </div>
+                     <!-- Problem 3 -->
+                    <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold text-brand-sand">⚠️ Harmful Products</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> Fake creams and mercury-laced soaps flood the market, damaging skin.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> Scan products for harmful ingredients and expiry dates before use.</p>
+                    </div>
+                    <!-- Problem 4 -->
+                    <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-brand-sand">👩🏾‍⚕️ No Health Monitoring</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> People treat symptoms randomly, with no data on what works.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> Track your skincare journey with photo logs and smart comparisons.</p>
+                    </div>
+                     <!-- Problem 5 -->
+                    <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold text-brand-sand">🧴 Unverified Vendors</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> The market is flooded with counterfeits from unregulated sellers.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> A curated marketplace of safe, vetted skincare products.</p>
+                    </div>
+                    <!-- Problem 6 -->
+                     <div class="reveal bg-brand-charcoal p-8 rounded-2xl border border-white/10" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold text-brand-sand">📉 No Central Data</h3>
+                        <p class="mt-2 text-brand-text-light"><span class="font-bold text-red-400">Challenge:</span> No large-scale dermatology database for African populations stunts research.</p>
+                        <p class="mt-2 text-brand-turquoise"><span class="font-bold">Solution:</span> Building a pan-African dataset to power future innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- "Built by Africans" Section -->
+        <section class="py-20 bg-brand-charcoal">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-brand-sand tracking-wider">
+                    BUILT BY <span class="gradient-text">AFRICANS</span>, FOR <span class="gradient-text">AFRICANS</span>
+                </h2>
+            </div>
+        </section>
+
+        <!-- 3. Core Features Section -->
+        <section id="features" class="py-32">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <span class="font-bold gradient-text uppercase tracking-widest">Our Platform</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold font-poppins text-brand-sand mt-4">An Ecosystem of Trust & Precision</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16">
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2">
+                        <h3 class="text-md font-bold text-brand-sand">AI Skin Scanner</h3>
+                    </div>
+                     <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 50ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Ingredient Detector</h3>
+                    </div>
+                     <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 100ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Expiry Date Checker</h3>
+                    </div>
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 150ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Progress Tracker</h3>
+                    </div>
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 200ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Personalized AI Routines</h3>
+                    </div>
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 250ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Skincare Marketplace</h3>
+                    </div>
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 300ms;">
+                        <h3 class="text-md font-bold text-brand-sand">Educational Hub</h3>
+                    </div>
+                    <div class="reveal bg-brand-dark-blue p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 transition-all duration-300 border border-transparent hover:border-brand-terracotta/50 hover:-translate-y-2" style="transition-delay: 350ms;">
+                        <h3 class="text-md font-bold text-brand-sand">TeleDermal Consult</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Meet the Founder Section -->
+        <section id="founder" class="py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal relative">
+                         <div class="absolute -inset-4 z-0 rounded-3xl bg-brand-terracotta opacity-20 filter blur-2xl"></div>
+                         <img src="images/founder.jpeg" alt="Ogirima Obey, Founder of AfriDam AI" class="relative z-10 w-full rounded-3xl object-cover shadow-2xl shadow-black/30" onerror="this.onerror=null;this.src='https://placehold.co/600x600?text=Founder';">
+                    </div>
+                    <div class="reveal" style="transition-delay: 200ms;">
+                        <span class="font-bold gradient-text uppercase tracking-widest">The Visionary</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold font-poppins text-brand-sand mt-4">Ogirima Obey</h2>
+                        <h3 class="text-xl text-brand-text-light mt-2">Founder, Registered Nurse & AI Developer</h3>
+                        <p class="mt-8 text-2xl lg:text-3xl font-light text-brand-sand italic border-l-4 border-brand-terracotta pl-6">"We’re not just building AI — we’re restoring dignity in care. This is a mission to ensure technology serves all of us, equally."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 9. Contact Section -->
+        <section id="contact" class="py-32 textured-bg">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-4xl md:text-5xl font-extrabold font-poppins text-brand-sand">Join Africa’s AI Health Revolution.</h2>
+                <p class="mt-6 max-w-3xl mx-auto text-lg text-brand-text-light">This isn’t just skin deep — it’s systemic change. Join us as an early investor to shape the future of healthcare for a continent.</p>
+                <div class="mt-12">
+                    <a href="https://calendly.com/d/cn3q-j7k-p5g/afridam-ai-investor-meeting" target="_blank" class="bg-brand-terracotta text-white font-bold py-5 px-12 rounded-full hover:bg-opacity-90 transition duration-300 shadow-2xl shadow-brand-terracotta/20 transform hover:scale-105 cta-glow inline-block">
+                        Schedule an Investor Call
+                    </a>
+                    <p class="mt-6 text-brand-text-light">Or call: <a href="tel:+2349025643150" class="font-bold text-brand-sand hover:text-brand-terracotta transition">+234 902 564 3150</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="responseDialog">
+        <p id="responseMessage"></p>
+        <button id="closeDialog" class="bg-brand-terracotta text-white font-bold px-6 py-2.5 rounded-full hover:bg-opacity-90 transition shadow-lg cta-glow">Close</button>
+    </dialog>
+
+    <!-- 10. Footer -->
+    <footer class="bg-brand-charcoal border-t border-white/10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                     <a href="https://www.afridamai.com" class="text-xl font-bold font-poppins text-brand-sand">AfriDam AI</a>
+                    <p class="mt-2 text-brand-text-light">Built in Africa. Powered by Purpose.</p>
+                </div>
+                <div class="md:text-center">
+                    <h4 class="font-semibold uppercase tracking-wider text-brand-text-light">Contact</h4>
+                    <div class="mt-4 text-brand-text-light space-y-1">
+                        <p><a href="mailto:info@afridamai.com" class="hover:text-brand-sand">info@afridamai.com</a></p>
+                        <p><a href="mailto:founder@afridamai.com" class="hover:text-brand-sand">founder@afridamai.com</a></p>
+                    </div>
+                </div>
+                <div class="md:text-right">
+                    <h4 class="font-semibold uppercase tracking-wider text-brand-text-light">Connect</h4>
+                    <div class="flex justify-center md:justify-end space-x-4 mt-4">
+                        <a href="#" class="text-brand-text-light hover:text-brand-sand">
+                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                         <a href="#" class="text-brand-text-light hover:text-brand-sand">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-brand-text-light text-sm">
+                <p>&copy; 2025 AfriDam AI. <a href="https://www.afridamai.com" class="hover:text-brand-sand">www.afridamai.com</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after first animation
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+
+        async function submitFormAsJSON(form, url) {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error("There was an error processing your request. Please make sure you provided a correct email address!");
+            }
+
+            return response.json(); // return parsed JSON response
+        }
+
+        const form = document.getElementById("waitlist");
+        const dialog = document.getElementById("responseDialog");
+        const responseMessage = document.getElementById("responseMessage");
+        const closeDialog = document.getElementById("closeDialog");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            try {
+                const result = await submitFormAsJSON(form, "http://localhost:8080/api/waitinglist/");
+                dialog.classList.remove("error");
+                dialog.classList.add("success");
+                responseMessage.textContent = result['message'] + " Please click the confirmation link that has been sent to your email to complete the sign-up";
+                form.reset();
+            } catch (error) {
+                dialog.classList.remove("success");
+                dialog.classList.add("error");
+                responseMessage.textContent = error.message;
+            }
+            dialog.showModal();
+        });
+
+        closeDialog.addEventListener("click", () => {
+            dialog.close();
+        });
+
+    </script>
+
+</body>
+</html>

@@ -56,6 +56,7 @@
         .gradient-text {
             background: -webkit-linear-gradient(45deg, #E1784F, #F0A287);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -391,7 +392,7 @@
             event.preventDefault();
 
             try {
-                const result = await submitFormAsJSON(form, "http://localhost:8080/api/waitinglist/");
+                const result = await submitFormAsJSON(form, "https://admin.afridamai.com/api/waitinglist/");
                 dialog.classList.remove("error");
                 dialog.classList.add("success");
                 responseMessage.textContent = result['message'] + " Please click the confirmation link that has been sent to your email to complete the sign-up";

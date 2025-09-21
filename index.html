@@ -238,7 +238,7 @@
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="reveal relative">
                          <div class="absolute -inset-4 z-0 rounded-3xl bg-brand-terracotta opacity-20 filter blur-2xl"></div>
-                         <img src="https://i.postimg.cc/GmCWsdYq/9-E790-DED-1-CD7-4410-A343-4-E2-D85724703-1-201-a.jpg" alt="Ogirima Obey, Founder of AfriDam AI" class="relative z-10 w-full rounded-3xl object-cover shadow-2xl shadow-black/30" onerror="this.onerror=null;this.src='https://placehold.co/600x600?text=Founder';">
+                         <img src="https://i.postimg.cc/j5ZMTVNh/image.png" alt="Ogirima Obey, Founder of AfriDam AI" class="relative z-10 w-full rounded-3xl object-cover shadow-2xl shadow-black/30" onerror="this.onerror=null;this.src='https://placehold.co/600x600?text=Founder';">
                     </div>
                     <div class="reveal" style="transition-delay: 200ms;">
                         <span class="font-bold gradient-text uppercase tracking-widest">The Visionary</span>
@@ -303,8 +303,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Optional: unobserve after first animation
-                    // observer.unobserve(entry.target); 
                 }
             });
         }, {
@@ -322,55 +320,10 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-
-        async function submitFormAsJSON(form, url) {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error("There was an error processing your request. Please make sure you provided a correct email address!");
-            }
-
-            return response.json(); // return parsed JSON response
-        }
-
-        const form = document.getElementById("waitlist");
-        const dialog = document.getElementById("responseDialog");
-        const responseMessage = document.getElementById("responseMessage");
-        const closeDialog = document.getElementById("closeDialog");
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            try {
-                const result = await submitFormAsJSON(form, "https://admin.afridamai.com/api/waitinglist/");
-                dialog.classList.remove("error");
-                dialog.classList.add("success");
-                responseMessage.textContent = result['message'] + " Please click the confirmation link that has been sent to your email to complete the sign-up";
-                form.reset();
-            } catch (error) {
-                dialog.classList.remove("success");
-                dialog.classList.add("error");
-                responseMessage.textContent = error.message;
-            }
-            dialog.showModal();
-        });
-
-        closeDialog.addEventListener("click", () => {
-            dialog.close();
-        });
-
+        // Simplified form handling for Netlify/GitHub Pages
+        // This version no longer uses the complex JavaScript for API calls
     </script>
 
 </body>
 </html>
-
 

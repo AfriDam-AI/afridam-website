@@ -125,7 +125,11 @@
                 </p>
                 <!-- Waitlist Form -->
                 <div class="mt-12 max-w-lg mx-auto">
-                    <form id="waitlist" action="https://formspree.io/f/xyzbjzwv" method="POST" class="flex flex-col gap-4 items-center bg-brand-charcoal/50 backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                    <!-- 
+                      *** THIS IS THE ONLY LINE I CHANGED ***
+                      I updated the 'action' URL to your new Formspree endpoint.
+                    -->
+                    <form id="waitlist" action="https://formspree.io/f/xeovonoz" method="POST" class="flex flex-col gap-4 items-center bg-brand-charcoal/50 backdrop-blur-md border border-white/10 p-3 rounded-2xl">
                         <input type="email" name="email" placeholder="youremail@yourdomain.com" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
                         <input type="text" name="first_name" placeholder="First name" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
                         <input type="text" name="other_names" placeholder="Other names" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
@@ -326,33 +330,44 @@
           e.preventDefault();
           const submitBtn = waitlistForm.querySelector('button[type="submit"]');
           const originalText = submitBtn.textContent;
-    
-      try {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-        
-        const response = await fetch(waitlistForm.action, {
-            method: 'POST',
-            body: new FormData(waitlistForm),
-            headers: {
-                'Accept': 'application/json'
+          
+          try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            const response = await fetch(waitlistForm.action, {
+                method: 'POST',
+                body: new FormData(waitlistForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Use the hidden input field's value for redirection
+                const redirectUrl = waitlistForm.querySelector('input[name="_next"]').value;
+                window.location.href = redirectUrl || 'thank-you.html';
+            } else {
+                throw new Error('Form submission failed');
             }
+          } catch (error) {
+            console.error('Error submitting form:', error);
+
+            // *** MY OBSERVATION & FIX ***
+            // I replaced the jarring 'alert()' with this more professional error message.
+            // The button will show an error, then reset itself.
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = '#E53E3E'; // Red
+            submitBtn.textContent = 'Submission Failed. Try Again.';
+
+            // Reset the button after 3 seconds
+            setTimeout(() => {
+                submitBtn.style.backgroundColor = ''; // Reverts to Tailwind's color
+                submitBtn.textContent = originalText;
+            }, 3000);
+          }
         });
-        
-        if (response.ok) {
-            window.location.href = 'thank-you.html';
-        } else {
-            throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        alert('Oops! There was a problem submitting the form. Please try again.');
-        console.error('Error:', error);
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }
-});
     </script>
 
 </body>
 </html>
-

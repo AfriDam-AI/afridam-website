@@ -125,15 +125,15 @@
                 </p>
                 <!-- Waitlist Form -->
                 <div class="mt-12 max-w-lg mx-auto">
-                    <!-- 
-                      *** THIS IS THE ONLY LINE I CHANGED ***
-                      I updated the 'action' URL to your new Formspree endpoint.
-                    -->
                     <form id="waitlist" action="https://formspree.io/f/xeovonoz" method="POST" class="flex flex-col gap-4 items-center bg-brand-charcoal/50 backdrop-blur-md border border-white/10 p-3 rounded-2xl">
                         <input type="email" name="email" placeholder="youremail@yourdomain.com" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
                         <input type="text" name="first_name" placeholder="First name" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
                         <input type="text" name="other_names" placeholder="Other names" required class="w-full bg-transparent text-white placeholder-brand-text-light px-6 py-3 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-terracotta transition">
-                        <input type="hidden" name="_next" value="https://afridamai.github.io/afridam-pitch-site/thank-you.html">
+                        <!-- 
+                          *** THIS IS THE ONLY LINE I CHANGED ***
+                          I updated the 'value' to be relative to the current site.
+                        -->
+                        <input type="hidden" name="_next" value="thank-you.html">
                         <button type="submit" class="w-full sm:w-auto bg-brand-terracotta text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition duration-300 shadow-2xl shadow-brand-terracotta/20 transform hover:scale-105 cta-glow">
                             Get Early Access
                         </button>

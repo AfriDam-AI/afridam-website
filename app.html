@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AfriDam AI | Complete Ecosystem</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons (for premium icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-charcoal': '#1C1A19',
+                        'brand-sand': '#F7F3EE',
+                        'brand-terracotta': '#E1784F',
+                        'brand-turquoise': '#4DB6AC',
+                        'brand-surface': '#2D3748',
+                        'brand-danger': '#EF4444',
+                        'brand-success': '#10B981',
+                    },
+                    animation: {
+                        'scan': 'scan 2s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { top: '0%', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #1C1A19; color: #F7F3EE; -webkit-tap-highlight-color: transparent; }
+        .screen { display: none; height: 100vh; width: 100vw; overflow-y: auto; position: fixed; top: 0; left: 0; }
+        .active-screen { display: flex; flex-direction: column; }
+        
+        /* Camera Overlay Styles */
+        .camera-overlay {
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(28, 26, 25, 0.9) 70%);
+        }
+        
+        /* Smooth fade for screen switching */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-inter antialiased">
+
+    <!-- SCREEN 1: LOGIN -->
+    <div id="screen-login" class="screen active-screen justify-center items-center p-6 fade-in">
+        <div class="w-full max-w-sm text-center">
+            <!-- Logo -->
+            <div class="flex justify-center mb-10">
+                <svg width="200" height="48" viewBox="0 0 140 32" fill="none">
+                    <text fill="#F7F3EE" font-family="Poppins, sans-serif" font-size="24" font-weight="800" letter-spacing="0.02em">
+                        <tspan x="0" y="24">A</tspan><tspan x="18" y="24">friDam</tspan>
+                    </text>
+                    <rect x="5.5" y="15.5" width="8" height="3" fill="#E1784F"/>
+                    <text fill="#4DB6AC" font-family="Poppins, sans-serif" font-size="24" font-weight="800" letter-spacing="0.02em" x="98" y="24">AI</text>
+                </svg>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-brand-surface p-4 rounded-xl border border-white/5 text-left transition focus-within:border-brand-terracotta">
+                    <label class="text-xs text-brand-terracotta font-semibold uppercase tracking-wider">Email</label>
+                    <input type="email" value="demo@afridam.com" class="w-full bg-transparent text-white focus:outline-none py-1 font-medium" placeholder="name@example.com">
+                </div>
+                <div class="bg-brand-surface p-4 rounded-xl border border-white/5 text-left transition focus-within:border-brand-terracotta">
+                    <label class="text-xs text-brand-terracotta font-semibold uppercase tracking-wider">Password</label>
+                    <input type="password" value="********" class="w-full bg-transparent text-white focus:outline-none py-1 font-medium" placeholder="••••••••">
+                </div>
+            </div>
+
+            <button onclick="navTo('dashboard')" class="mt-8 w-full bg-brand-terracotta text-white font-poppins font-bold py-4 rounded-full shadow-lg shadow-brand-terracotta/20 active:scale-95 transition-transform hover:opacity-90">
+                Secure Login
+            </button>
+            
+            <p class="mt-8 text-xs text-white/40 uppercase tracking-widest">Medical Grade Security</p>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: DASHBOARD -->
+    <div id="screen-dashboard" class="screen bg-brand-charcoal fade-in">
+        <!-- Header -->
+        <div class="pt-8 pb-4 px-6 flex justify-between items-center bg-brand-charcoal/95 backdrop-blur z-20 sticky top-0 border-b border-white/5">
+            <div>
+                <p class="text-brand-terracotta text-xs font-bold uppercase tracking-wider">Patient Portal</p>
+                <h1 class="text-2xl font-bold font-poppins text-brand-sand">Hello, Ogirima</h1>
+            </div>
+            <div class="h-10 w-10 rounded-full bg-brand-surface border border-brand-terracotta flex items-center justify-center overflow-hidden">
+                <img src="https://i.pravatar.cc/100?img=11" alt="Profile" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <div class="p-6 pb-24 space-y-6">
+            <!-- Main Hero Action -->
+            <button onclick="startCamera('face')" class="w-full bg-gradient-to-br from-brand-surface to-brand-charcoal border border-white/10 p-6 rounded-3xl flex items-center justify-between shadow-xl shadow-black/40 group active:scale-[0.98] transition relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-32 h-32 bg-brand-terracotta/10 blur-3xl rounded-full"></div>
+                <div class="text-left relative z-10">
+                    <span class="bg-brand-terracotta text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">New Scan</span>
+                    <h2 class="text-xl font-bold font-poppins text-brand-sand mt-2">Check Skin Health</h2>
+                    <p class="text-brand-text-light text-xs mt-1">AI Analysis in 30 seconds</p>
+                </div>
+                <div class="h-14 w-14 rounded-full bg-brand-terracotta flex items-center justify-center shadow-lg shadow-brand-terracotta/30 group-hover:scale-110 transition">
+                    <i class="ph-fill ph-camera text-2xl text-white"></i>
+                </div>
+            </button>
+
+            <!-- Secondary Grid -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Ingredient Check -->
+                <button onclick="startCamera('product')" class="bg-brand-surface border border-white/5 p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5">
+                    <div class="h-10 w-10 rounded-xl bg-brand-turquoise/20 text-brand-turquoise flex items-center justify-center">
+                        <i class="ph-fill ph-barcode text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-sm text-brand-sand">Check Product</h3>
+                        <p class="text-[10px] text-brand-text-light leading-tight mt-1">Scan for toxins & mercury</p>
+                    </div>
+                </button>
+
+                <!-- Telehealth -->
+                <button onclick="navTo('consult')" class="bg-brand-surface border border-white/5 p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5">
+                    <div class="h-10 w-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                        <i class="ph-fill ph-video-camera text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-sm text-brand-sand">Talk to Doctor</h3>
+                        <p class="text-[10px] text-brand-text-light leading-tight mt-1">Book a dermatologist</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Progress Tracker Widget -->
+            <div class="bg-brand-surface rounded-2xl p-5 border border-white/5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-sm text-brand-sand">Treatment Progress</h3>
+                    <span class="text-xs text-brand-turquoise">Week 3 of 8</span>
+                </div>
+                <div class="flex items-end justify-between gap-2 h-16 mb-2">
+                    <div class="w-full bg-white/5 rounded-t-lg h-[40%]"></div>
+                    <div class="w-full bg-white/5 rounded-t-lg h-[60%]"></div>
+                    <div class="w-full bg-white/5 rounded-t-lg h-[50%]"></div>
+                    <div class="w-full bg-brand-turquoise rounded-t-lg h-[80%] relative">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-brand-turquoise text-brand-charcoal text-[10px] font-bold px-1.5 rounded">Today</div>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-t-lg h-[20%]"></div>
+                </div>
+                <p class="text-xs text-brand-text-light">Your skin clarity has improved by <span class="text-brand-turquoise font-bold">12%</span> this week.</p>
+            </div>
+        </div>
+        
+        <!-- Bottom Nav -->
+        <div class="fixed bottom-0 left-0 right-0 border-t border-white/5 bg-brand-charcoal/90 backdrop-blur py-4 px-8 flex justify-between items-center text-2xl text-brand-text-light z-30">
+            <button onclick="navTo('dashboard')" class="text-brand-terracotta flex flex-col items-center gap-1">
+                <i class="ph-fill ph-house"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-bold ph-chart-line-up"></i>
+                <span class="text-[10px] font-medium">Track</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-bold ph-user"></i>
+                <span class="text-[10px] font-medium">Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: UNIVERSAL SCANNER (Face or Product) -->
+    <div id="screen-camera" class="screen bg-black z-50">
+        <!-- Live Video Feed -->
+        <video id="video-feed" class="w-full h-full object-cover absolute inset-0" autoplay playsinline muted></video>
+        
+        <!-- UI Overlay -->
+        <div class="absolute inset-0 camera-overlay z-10 flex flex-col items-center justify-between py-12">
+            <!-- Top Controls -->
+            <div class="w-full px-6 flex justify-between items-center">
+                <button onclick="stopCamera()" class="h-10 w-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+                <div class="bg-black/40 backdrop-blur px-3 py-1 rounded-full border border-white/10">
+                    <span id="scan-mode-badge" class="text-xs text-brand-turquoise font-medium uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-turquoise animate-pulse"></span> Analyzing
+                    </span>
+                </div>
+            </div>
+
+            <!-- Focus Area (Face Mode) -->
+            <div id="overlay-face" class="relative w-64 h-80 rounded-[45%] border-2 border-white/20 overflow-hidden">
+                <div class="absolute w-full h-1 bg-brand-turquoise shadow-[0_0_15px_#4DB6AC] animate-scan opacity-50"></div>
+                <div class="absolute top-4 left-0 right-0 text-center">
+                    <p class="text-sm font-medium text-white/80 drop-shadow-md">Center Face</p>
+                </div>
+            </div>
+
+            <!-- Focus Area (Product Mode) -->
+            <div id="overlay-product" class="hidden relative w-72 h-48 rounded-xl border-2 border-white/20 overflow-hidden">
+                <div class="absolute w-full h-1 bg-purple-400 shadow-[0_0_15px_#A855F7] animate-scan opacity-50"></div>
+                <div class="absolute bottom-4 left-0 right-0 text-center">
+                    <p class="text-sm font-medium text-white/80 drop-shadow-md">Scan Ingredients / Barcode</p>
+                </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="flex flex-col items-center gap-6">
+                <p id="scan-instruction" class="text-white/60 text-sm">Hold steady for AI analysis</p>
+                <button onclick="simulateAnalysis()" class="h-20 w-20 rounded-full border-4 border-white flex items-center justify-center relative active:scale-95 transition">
+                    <div class="h-16 w-16 rounded-full bg-white"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: LOADING -->
+    <div id="screen-loading" class="screen bg-brand-charcoal justify-center items-center flex-col z-50">
+        <div class="relative h-32 w-32">
+            <div class="absolute inset-0 rounded-full border-4 border-white/5"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-t-brand-turquoise border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+            <img src="https://i.postimg.cc/j5ZMTVNh/image.png" class="absolute inset-0 m-auto h-16 w-16 rounded-full object-cover opacity-50" onerror="this.style.display='none'">
+        </div>
+        <h2 id="loading-text" class="mt-8 text-xl font-bold font-poppins text-brand-sand">Processing Skin Map...</h2>
+        <p class="text-brand-text-light text-sm mt-2 animate-pulse">Cross-referencing 500k+ data points</p>
+    </div>
+
+    <!-- SCREEN 5: SKIN ANALYSIS RESULTS -->
+    <div id="screen-results-skin" class="screen bg-brand-charcoal fade-in z-40">
+        <div class="h-64 bg-gray-800 relative shrink-0">
+            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-70" alt="Scanned Skin">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/50 to-transparent"></div>
+            <button onclick="navTo('dashboard')" class="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center z-20">
+                <i class="ph-bold ph-arrow-left text-xl"></i>
+            </button>
+        </div>
+
+        <div class="px-6 -mt-16 relative z-10 pb-12">
+            <!-- Diagnosis Card -->
+            <div class="bg-brand-surface rounded-2xl p-6 border border-white/10 shadow-2xl">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="bg-brand-turquoise/10 text-brand-turquoise px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Analysis Complete</span>
+                    <span class="text-brand-turquoise font-bold text-sm">94% Confidence</span>
+                </div>
+                <h1 class="text-3xl font-bold font-poppins text-brand-sand mb-1">Acne Vulgaris</h1>
+                <p class="text-brand-text-light text-sm">Severity: <span class="text-yellow-400 font-semibold">Moderate (Grade II)</span></p>
+                <p class="mt-4 text-sm text-brand-text-light leading-relaxed border-t border-white/5 pt-4">
+                    Detected inflammation and clogged pores. Common triggers include hormonal changes or comedogenic products.
+                </p>
+            </div>
+
+            <!-- HUMAN EXPERT CTA (The "Loop") -->
+            <div class="mt-6">
+                <h3 class="font-poppins font-semibold text-lg mb-3 flex items-center gap-2">
+                    <i class="ph-fill ph-stethoscope text-brand-terracotta"></i> Recommended Expert
+                </h3>
+                <div class="bg-gradient-to-r from-brand-surface to-brand-surface/50 border border-brand-terracotta/30 rounded-2xl p-4 flex gap-4 items-center relative overflow-hidden">
+                    <div class="absolute right-0 top-0 h-full w-1 bg-brand-terracotta"></div>
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" class="h-14 w-14 rounded-full object-cover border-2 border-brand-sand">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-brand-sand text-sm">Dr. Rasheedah</h4>
+                        <p class="text-xs text-brand-text-light">Specialist in Melanin-Rich Skin</p>
+                        <div class="flex items-center gap-1 mt-1 text-[10px] text-brand-turquoise">
+                            <i class="ph-fill ph-star"></i> 4.9 (120 Reviews)
+                        </div>
+                    </div>
+                    <button onclick="navTo('consult')" class="bg-brand-terracotta text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+                        Book
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Treatment Plan -->
+            <div class="mt-8">
+                <h3 class="font-poppins font-semibold text-lg mb-3">Next Steps</h3>
+                <div class="space-y-3">
+                    <div class="bg-white/5 rounded-xl p-4 flex gap-4 border border-white/5">
+                        <i class="ph-fill ph-prescription text-2xl text-brand-turquoise"></i>
+                        <div>
+                            <h4 class="font-semibold text-brand-sand text-sm">Use Salicylic Acid</h4>
+                            <p class="text-xs text-brand-text-light">Apply 2% concentration nightly.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 flex gap-4 border border-white/5">
+                        <i class="ph-fill ph-prohibit text-2xl text-red-400"></i>
+                        <div>
+                            <h4 class="font-semibold text-brand-sand text-sm">Avoid Coconut Oil</h4>
+                            <p class="text-xs text-brand-text-light">High comedogenic rating detected.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="navTo('dashboard')" class="mt-8 w-full border border-white/10 text-brand-text-light font-medium py-4 rounded-full hover:bg-white/5 transition">
+                Return to Dashboard
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 6: PRODUCT SCAN RESULTS -->
+    <div id="screen-results-product" class="screen bg-brand-charcoal fade-in z-40">
+        <div class="p-6 pt-12 text-center">
+            <div class="h-24 w-24 rounded-full bg-red-500/20 text-brand-danger border-4 border-brand-danger mx-auto flex items-center justify-center mb-6">
+                <i class="ph-bold ph-warning-octagon text-5xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold font-poppins text-brand-sand">Caution Advised</h1>
+            <p class="text-brand-text-light mt-2">Harmful ingredients detected in this product.</p>
+
+            <div class="mt-8 bg-brand-surface rounded-2xl overflow-hidden text-left">
+                <div class="bg-red-500/10 p-4 border-b border-red-500/20 flex justify-between items-center">
+                    <span class="font-bold text-red-400 text-sm">Detected Toxin</span>
+                    <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded">High Risk</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-brand-sand">Hydroquinone</h3>
+                    <p class="text-sm text-brand-text-light mt-2 leading-relaxed">
+                        Long-term use can cause <strong>Ochronosis</strong> (permanent blue-black skin discoloration). Banned in multiple countries without prescription.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-left">
+                <h3 class="font-bold text-brand-sand mb-2">Safe Alternatives</h3>
+                <div class="bg-white/5 rounded-xl p-3 flex gap-3 items-center border border-white/5">
+                    <div class="h-10 w-10 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
+                        <i class="ph-bold ph-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-brand-sand">Kojic Acid Serum</p>
+                        <p class="text-xs text-brand-text-light">Natural brightener, safe for daily use.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="navTo('dashboard')" class="mt-12 w-full bg-brand-surface border border-white/10 text-white font-bold py-4 rounded-full">
+                Scan Another Product
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 7: CONSULTATION LIST -->
+    <div id="screen-consult" class="screen bg-brand-charcoal fade-in">
+        <div class="pt-8 pb-4 px-6 flex items-center gap-4 bg-brand-charcoal z-20 sticky top-0 border-b border-white/5">
+            <button onclick="navTo('dashboard')" class="h-10 w-10 rounded-full bg-brand-surface flex items-center justify-center text-white">
+                <i class="ph-bold ph-arrow-left"></i>
+            </button>
+            <h1 class="text-xl font-bold font-poppins text-brand-sand">TeleDermal Consult</h1>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <p class="text-brand-text-light text-sm">Verified dermatologists specializing in African skin types.</p>
+
+            <!-- Doc 1 -->
+            <div class="bg-brand-surface p-4 rounded-2xl border border-white/5 flex gap-4">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" class="h-16 w-16 rounded-xl object-cover">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-brand-sand">Dr. Rasheedah</h3>
+                        <span class="text-brand-turquoise text-xs font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> 4.9</span>
+                    </div>
+                    <p class="text-xs text-brand-text-light mt-1">Lagos University Teaching Hospital</p>
+                    <div class="mt-3 flex justify-between items-center">
+                        <span class="text-brand-terracotta font-bold text-sm">₦15,000</span>
+                        <button class="bg-brand-sand text-brand-charcoal text-xs font-bold px-4 py-2 rounded-full">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doc 2 -->
+            <div class="bg-brand-surface p-4 rounded-2xl border border-white/5 flex gap-4 opacity-75">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200" class="h-16 w-16 rounded-xl object-cover">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-brand-sand">Dr. Anand</h3>
+                        <span class="text-brand-turquoise text-xs font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> 5.0</span>
+                    </div>
+                    <p class="text-xs text-brand-text-light mt-1">Consultant Dermatologist</p>
+                    <div class="mt-3 flex justify-between items-center">
+                        <span class="text-brand-terracotta font-bold text-sm">₦20,000</span>
+                        <button class="bg-brand-surface border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full">Next Available: Mon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIC -->
+    <script>
+        let currentMode = 'face'; // 'face' or 'product'
+
+        function navTo(screenId) {
+            document.querySelectorAll('.screen').forEach(el => {
+                el.classList.remove('active-screen');
+                if (el.id === 'screen-camera') {
+                    const video = document.getElementById('video-feed');
+                    if (video.srcObject) video.srcObject.getTracks().forEach(track => track.stop());
+                }
+            });
+            document.getElementById('screen-' + screenId).classList.add('active-screen');
+        }
+
+        async function startCamera(mode) {
+            currentMode = mode;
+            navTo('camera');
+            
+            // Toggle Overlays
+            document.getElementById('overlay-face').style.display = mode === 'face' ? 'block' : 'none';
+            document.getElementById('overlay-product').style.display = mode === 'product' ? 'block' : 'none';
+            document.getElementById('scan-mode-badge').innerHTML = mode === 'face' ? 
+                '<span class="w-2 h-2 rounded-full bg-brand-turquoise animate-pulse"></span> Face Scan' : 
+                '<span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> Product Scan';
+            
+            const video = document.getElementById('video-feed');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = stream;
+            } catch (err) {
+                alert("Please allow camera access for the demo.");
+            }
+        }
+
+        function stopCamera() { navTo('dashboard'); }
+
+        function simulateAnalysis() {
+            const video = document.getElementById('video-feed');
+            if (video.srcObject) video.srcObject.getTracks().forEach(track => track.stop());
+
+            navTo('loading');
+            
+            // Customize loading text based on mode
+            const loadingText = document.getElementById('loading-text');
+            loadingText.innerText = currentMode === 'face' ? 'Mapping Skin Texture...' : 'Analyzing Ingredients...';
+
+            setTimeout(() => {
+                if (currentMode === 'face') {
+                    navTo('results-skin');
+                } else {
+                    navTo('results-product');
+                }
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AfriDam AI | Complete Ecosystem</title>
+    <title>AfriDam AI | World Class Prototype</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Config -->
     <script>
@@ -28,20 +28,11 @@
                         'brand-terracotta': '#E1784F',
                         'brand-turquoise': '#4DB6AC',
                         'brand-surface': '#2D3748',
-                        'brand-danger': '#EF4444',
-                        'brand-success': '#10B981',
+                        'brand-dark-surface': '#151312',
                     },
-                    animation: {
-                        'scan': 'scan 2s linear infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        scan: {
-                            '0%': { top: '0%', opacity: '0' },
-                            '10%': { opacity: '1' },
-                            '90%': { opacity: '1' },
-                            '100%': { top: '100%', opacity: '0' },
-                        }
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.05\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E')",
                     }
                 }
             }
@@ -50,27 +41,38 @@
 
     <style>
         body { background-color: #1C1A19; color: #F7F3EE; -webkit-tap-highlight-color: transparent; }
-        .screen { display: none; height: 100vh; width: 100vw; overflow-y: auto; position: fixed; top: 0; left: 0; }
+        .screen { display: none; min-height: 100vh; width: 100vw; overflow-y: auto; position: fixed; top: 0; left: 0; padding-bottom: 100px; }
         .active-screen { display: flex; flex-direction: column; }
         
-        /* Camera Overlay Styles */
-        .camera-overlay {
-            background: radial-gradient(ellipse at center, transparent 30%, rgba(28, 26, 25, 0.9) 70%);
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(45, 55, 72, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
+
+        /* Nav Active Indicator */
+        .nav-item.active i { color: #E1784F; }
+        .nav-item.active span { color: #E1784F; }
         
-        /* Smooth fade for screen switching */
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        .fade-in { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom Scrollbar hide */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
-<body class="font-inter antialiased">
+<body class="font-inter antialiased bg-brand-charcoal bg-hero-pattern">
 
     <!-- SCREEN 1: LOGIN -->
-    <div id="screen-login" class="screen active-screen justify-center items-center p-6 fade-in">
-        <div class="w-full max-w-sm text-center">
+    <div id="screen-login" class="screen active-screen justify-center items-center p-6 fade-in bg-[url('https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-brand-charcoal/90 backdrop-blur-sm"></div>
+        
+        <div class="w-full max-w-sm text-center relative z-10">
             <!-- Logo -->
-            <div class="flex justify-center mb-10">
-                <svg width="200" height="48" viewBox="0 0 140 32" fill="none">
+            <div class="flex justify-center mb-12">
+                <svg width="220" height="52" viewBox="0 0 140 32" fill="none">
                     <text fill="#F7F3EE" font-family="Poppins, sans-serif" font-size="24" font-weight="800" letter-spacing="0.02em">
                         <tspan x="0" y="24">A</tspan><tspan x="18" y="24">friDam</tspan>
                     </text>
@@ -79,382 +81,365 @@
                 </svg>
             </div>
 
-            <div class="space-y-4">
-                <div class="bg-brand-surface p-4 rounded-xl border border-white/5 text-left transition focus-within:border-brand-terracotta">
-                    <label class="text-xs text-brand-terracotta font-semibold uppercase tracking-wider">Email</label>
-                    <input type="email" value="demo@afridam.com" class="w-full bg-transparent text-white focus:outline-none py-1 font-medium" placeholder="name@example.com">
+            <div class="glass-panel p-6 rounded-2xl shadow-2xl space-y-4">
+                <div class="text-left">
+                    <label class="text-xs text-brand-text-light font-medium ml-1">Email Address</label>
+                    <input type="email" value="demo@afridam.com" class="mt-1 w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-terracotta transition" placeholder="name@example.com">
                 </div>
-                <div class="bg-brand-surface p-4 rounded-xl border border-white/5 text-left transition focus-within:border-brand-terracotta">
-                    <label class="text-xs text-brand-terracotta font-semibold uppercase tracking-wider">Password</label>
-                    <input type="password" value="********" class="w-full bg-transparent text-white focus:outline-none py-1 font-medium" placeholder="••••••••">
+                <div class="text-left">
+                    <label class="text-xs text-brand-text-light font-medium ml-1">Password</label>
+                    <input type="password" value="********" class="mt-1 w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-terracotta transition" placeholder="••••••••">
                 </div>
+                <button onclick="navTo('dashboard')" class="w-full bg-gradient-to-r from-brand-terracotta to-[#F0A287] text-white font-poppins font-bold py-4 rounded-xl shadow-lg shadow-brand-terracotta/20 active:scale-95 transition-transform hover:opacity-90 mt-4">
+                    Secure Login
+                </button>
             </div>
-
-            <button onclick="navTo('dashboard')" class="mt-8 w-full bg-brand-terracotta text-white font-poppins font-bold py-4 rounded-full shadow-lg shadow-brand-terracotta/20 active:scale-95 transition-transform hover:opacity-90">
-                Secure Login
-            </button>
             
-            <p class="mt-8 text-xs text-white/40 uppercase tracking-widest">Medical Grade Security</p>
+            <p class="mt-8 text-xs text-white/40 font-medium">By nurses, for Africa.</p>
         </div>
     </div>
 
     <!-- SCREEN 2: DASHBOARD -->
-    <div id="screen-dashboard" class="screen bg-brand-charcoal fade-in">
+    <div id="screen-dashboard" class="screen fade-in">
         <!-- Header -->
-        <div class="pt-8 pb-4 px-6 flex justify-between items-center bg-brand-charcoal/95 backdrop-blur z-20 sticky top-0 border-b border-white/5">
+        <div class="pt-10 pb-4 px-6 flex justify-between items-center z-20 sticky top-0 bg-gradient-to-b from-brand-charcoal to-brand-charcoal/0">
             <div>
-                <p class="text-brand-terracotta text-xs font-bold uppercase tracking-wider">Patient Portal</p>
-                <h1 class="text-2xl font-bold font-poppins text-brand-sand">Hello, Ogirima</h1>
+                <p class="text-brand-terracotta text-xs font-bold uppercase tracking-wider mb-0.5">Welcome Back</p>
+                <h1 class="text-2xl font-bold font-poppins text-brand-sand">Ogirima</h1>
             </div>
-            <div class="h-10 w-10 rounded-full bg-brand-surface border border-brand-terracotta flex items-center justify-center overflow-hidden">
-                <img src="https://i.pravatar.cc/100?img=11" alt="Profile" class="w-full h-full object-cover">
+            <div onclick="navTo('profile')" class="h-11 w-11 rounded-full p-0.5 bg-gradient-to-tr from-brand-terracotta to-brand-turquoise cursor-pointer">
+                <img src="https://i.pravatar.cc/100?img=11" alt="Profile" class="w-full h-full object-cover rounded-full border-2 border-brand-charcoal">
             </div>
         </div>
 
-        <div class="p-6 pb-24 space-y-6">
-            <!-- Main Hero Action -->
-            <button onclick="startCamera('face')" class="w-full bg-gradient-to-br from-brand-surface to-brand-charcoal border border-white/10 p-6 rounded-3xl flex items-center justify-between shadow-xl shadow-black/40 group active:scale-[0.98] transition relative overflow-hidden">
-                <div class="absolute right-0 top-0 w-32 h-32 bg-brand-terracotta/10 blur-3xl rounded-full"></div>
-                <div class="text-left relative z-10">
-                    <span class="bg-brand-terracotta text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">New Scan</span>
-                    <h2 class="text-xl font-bold font-poppins text-brand-sand mt-2">Check Skin Health</h2>
-                    <p class="text-brand-text-light text-xs mt-1">AI Analysis in 30 seconds</p>
+        <div class="px-6 space-y-6">
+            
+            <!-- Dynamic Tip Card -->
+            <div class="glass-panel p-4 rounded-2xl flex items-start gap-4 relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 h-20 w-20 bg-brand-turquoise/10 rounded-full blur-xl"></div>
+                <div class="h-10 w-10 rounded-full bg-brand-turquoise/20 text-brand-turquoise flex items-center justify-center shrink-0">
+                    <i class="ph-fill ph-lightbulb text-xl"></i>
                 </div>
-                <div class="h-14 w-14 rounded-full bg-brand-terracotta flex items-center justify-center shadow-lg shadow-brand-terracotta/30 group-hover:scale-110 transition">
-                    <i class="ph-fill ph-camera text-2xl text-white"></i>
+                <div>
+                    <h3 class="font-bold text-sm text-brand-sand mb-1">Daily Skin Tip</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">"Hydration is key. For melanin-rich skin, look for Hyaluronic Acid to prevent ashy texture without clogging pores."</p>
+                </div>
+            </div>
+
+            <!-- Main Hero Action -->
+            <button onclick="startCamera('face')" class="w-full relative h-40 rounded-3xl overflow-hidden group shadow-2xl shadow-brand-terracotta/10 transition-all hover:shadow-brand-terracotta/20 active:scale-[0.98]">
+                <!-- Background Image & Gradient -->
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-brand-charcoal/80 to-transparent"></div>
+                
+                <div class="absolute inset-0 p-6 flex flex-col justify-center items-start">
+                    <span class="bg-brand-terracotta text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide mb-2">AI Powered</span>
+                    <h2 class="text-2xl font-bold font-poppins text-brand-sand leading-tight">Start New<br>Skin Analysis</h2>
+                    <div class="mt-4 flex items-center gap-2 text-xs font-bold text-brand-terracotta group-hover:translate-x-1 transition-transform">
+                        <span>Open Scanner</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Floating Icon -->
+                <div class="absolute right-6 top-1/2 -translate-y-1/2 h-16 w-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                    <i class="ph-fill ph-scan text-3xl text-brand-sand"></i>
                 </div>
             </button>
 
-            <!-- Secondary Grid -->
+            <!-- Actions Grid -->
             <div class="grid grid-cols-2 gap-4">
                 <!-- Ingredient Check -->
-                <button onclick="startCamera('product')" class="bg-brand-surface border border-white/5 p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5">
-                    <div class="h-10 w-10 rounded-xl bg-brand-turquoise/20 text-brand-turquoise flex items-center justify-center">
+                <button onclick="startCamera('product')" class="glass-panel p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5 relative group">
+                    <div class="h-10 w-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-barcode text-xl"></i>
                     </div>
                     <div class="text-left">
                         <h3 class="font-bold text-sm text-brand-sand">Check Product</h3>
-                        <p class="text-[10px] text-brand-text-light leading-tight mt-1">Scan for toxins & mercury</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">Scan barcodes for toxins</p>
                     </div>
                 </button>
 
                 <!-- Telehealth -->
-                <button onclick="navTo('consult')" class="bg-brand-surface border border-white/5 p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5">
-                    <div class="h-10 w-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                <button onclick="navTo('consult')" class="glass-panel p-5 rounded-2xl flex flex-col items-start gap-3 active:scale-[0.98] transition hover:bg-white/5 relative group">
+                    <div class="h-10 w-10 rounded-xl bg-brand-terracotta/20 text-brand-terracotta flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-video-camera text-xl"></i>
                     </div>
                     <div class="text-left">
                         <h3 class="font-bold text-sm text-brand-sand">Talk to Doctor</h3>
-                        <p class="text-[10px] text-brand-text-light leading-tight mt-1">Book a dermatologist</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">Book expert consults</p>
                     </div>
                 </button>
             </div>
 
-            <!-- Progress Tracker Widget -->
-            <div class="bg-brand-surface rounded-2xl p-5 border border-white/5">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-bold text-sm text-brand-sand">Treatment Progress</h3>
-                    <span class="text-xs text-brand-turquoise">Week 3 of 8</span>
+            <!-- Recent Activity Mini-List -->
+            <div>
+                <div class="flex justify-between items-center mb-3 px-1">
+                    <h3 class="font-bold text-sm text-brand-sand">Recent Activity</h3>
+                    <button onclick="navTo('track')" class="text-xs text-brand-terracotta font-medium">See All</button>
                 </div>
-                <div class="flex items-end justify-between gap-2 h-16 mb-2">
-                    <div class="w-full bg-white/5 rounded-t-lg h-[40%]"></div>
-                    <div class="w-full bg-white/5 rounded-t-lg h-[60%]"></div>
-                    <div class="w-full bg-white/5 rounded-t-lg h-[50%]"></div>
-                    <div class="w-full bg-brand-turquoise rounded-t-lg h-[80%] relative">
-                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-brand-turquoise text-brand-charcoal text-[10px] font-bold px-1.5 rounded">Today</div>
+                <div class="glass-panel p-1 rounded-2xl">
+                    <div class="flex items-center justify-between p-3 border-b border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="h-8 w-8 rounded-lg bg-green-500/20 text-green-500 flex items-center justify-center"><i class="ph-bold ph-check"></i></div>
+                            <div>
+                                <p class="text-xs font-bold text-brand-sand">Morning Scan</p>
+                                <p class="text-[10px] text-gray-400">Today, 8:00 AM</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-medium text-brand-turquoise">Healthy</span>
                     </div>
-                    <div class="w-full bg-white/5 rounded-t-lg h-[20%]"></div>
+                     <div class="flex items-center justify-between p-3">
+                        <div class="flex items-center gap-3">
+                            <div class="h-8 w-8 rounded-lg bg-brand-terracotta/20 text-brand-terracotta flex items-center justify-center"><i class="ph-bold ph-warning"></i></div>
+                            <div>
+                                <p class="text-xs font-bold text-brand-sand">Product Alert</p>
+                                <p class="text-[10px] text-gray-400">Yesterday</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-medium text-brand-terracotta">Avoid</span>
+                    </div>
                 </div>
-                <p class="text-xs text-brand-text-light">Your skin clarity has improved by <span class="text-brand-turquoise font-bold">12%</span> this week.</p>
             </div>
-        </div>
-        
-        <!-- Bottom Nav -->
-        <div class="fixed bottom-0 left-0 right-0 border-t border-white/5 bg-brand-charcoal/90 backdrop-blur py-4 px-8 flex justify-between items-center text-2xl text-brand-text-light z-30">
-            <button onclick="navTo('dashboard')" class="text-brand-terracotta flex flex-col items-center gap-1">
-                <i class="ph-fill ph-house"></i>
-                <span class="text-[10px] font-medium">Home</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 hover:text-white transition">
-                <i class="ph-bold ph-chart-line-up"></i>
-                <span class="text-[10px] font-medium">Track</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 hover:text-white transition">
-                <i class="ph-bold ph-user"></i>
-                <span class="text-[10px] font-medium">Profile</span>
-            </button>
         </div>
     </div>
 
-    <!-- SCREEN 3: UNIVERSAL SCANNER (Face or Product) -->
+    <!-- SCREEN 3: TRACKING / PROGRESS -->
+    <div id="screen-track" class="screen fade-in">
+        <div class="pt-8 pb-4 px-6 bg-brand-charcoal z-20 sticky top-0 border-b border-white/5">
+            <h1 class="text-xl font-bold font-poppins text-brand-sand">Skin Journey</h1>
+        </div>
+        <div class="p-6 space-y-6">
+            <!-- Chart Card -->
+            <div class="glass-panel p-5 rounded-2xl">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase tracking-wider">Overall Health Score</p>
+                        <h2 class="text-3xl font-bold text-brand-sand mt-1">84<span class="text-sm text-brand-turquoise font-medium ml-1">/100</span></h2>
+                    </div>
+                    <span class="bg-green-500/10 text-green-500 text-xs font-bold px-2 py-1 rounded">+12% this week</span>
+                </div>
+                <!-- CSS Bar Chart -->
+                <div class="flex items-end justify-between gap-2 h-32">
+                    <div class="w-full bg-white/5 rounded-t-md h-[40%] hover:bg-brand-terracotta/50 transition"></div>
+                    <div class="w-full bg-white/5 rounded-t-md h-[55%] hover:bg-brand-terracotta/50 transition"></div>
+                    <div class="w-full bg-white/5 rounded-t-md h-[45%] hover:bg-brand-terracotta/50 transition"></div>
+                    <div class="w-full bg-white/5 rounded-t-md h-[70%] hover:bg-brand-terracotta/50 transition"></div>
+                    <div class="w-full bg-white/5 rounded-t-md h-[65%] hover:bg-brand-terracotta/50 transition"></div>
+                    <div class="w-full bg-brand-terracotta rounded-t-md h-[84%] relative shadow-[0_0_15px_rgba(225,120,79,0.5)]"></div>
+                    <div class="w-full bg-white/5 rounded-t-md h-[20%] text-[8px] text-center pt-1 text-gray-500">Goal</div>
+                </div>
+                <div class="flex justify-between mt-2 text-[10px] text-gray-500 font-medium">
+                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span class="text-brand-terracotta">Today</span><span>S</span>
+                </div>
+            </div>
+
+            <!-- Photo Log -->
+            <div>
+                <h3 class="font-bold text-sm text-brand-sand mb-3">Photo Diary</h3>
+                <div class="grid grid-cols-3 gap-2">
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=200" class="aspect-square rounded-xl object-cover opacity-60">
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=200" class="aspect-square rounded-xl object-cover opacity-80">
+                    <div class="aspect-square rounded-xl border-2 border-dashed border-white/20 flex items-center justify-center text-white/40">
+                        <i class="ph-bold ph-plus text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: PROFILE -->
+    <div id="screen-profile" class="screen fade-in">
+        <div class="relative h-48 bg-gradient-to-b from-brand-surface to-brand-charcoal">
+            <div class="absolute -bottom-10 left-6">
+                <img src="https://i.pravatar.cc/100?img=11" class="h-24 w-24 rounded-full border-4 border-brand-charcoal shadow-xl">
+            </div>
+        </div>
+        <div class="pt-12 px-6 pb-24">
+            <h1 class="text-2xl font-bold font-poppins text-brand-sand">Ogirima Obey</h1>
+            <p class="text-sm text-brand-turquoise font-medium">Premium Member</p>
+            
+            <div class="mt-8 space-y-3">
+                <button class="w-full glass-panel p-4 rounded-xl flex items-center justify-between group active:scale-[0.98]">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-brand-sand/10 flex items-center justify-center"><i class="ph-fill ph-user-gear"></i></div>
+                        <span class="text-sm font-medium">Account Settings</span>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-500"></i>
+                </button>
+                <button class="w-full glass-panel p-4 rounded-xl flex items-center justify-between group active:scale-[0.98]">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-brand-sand/10 flex items-center justify-center"><i class="ph-fill ph-bell"></i></div>
+                        <span class="text-sm font-medium">Notifications</span>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-500"></i>
+                </button>
+                 <button class="w-full glass-panel p-4 rounded-xl flex items-center justify-between group active:scale-[0.98]">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-brand-sand/10 flex items-center justify-center"><i class="ph-fill ph-shield"></i></div>
+                        <span class="text-sm font-medium">Privacy & Data</span>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-500"></i>
+                </button>
+                <button onclick="navTo('login')" class="w-full p-4 rounded-xl flex items-center gap-3 text-red-400 mt-4">
+                    <i class="ph-bold ph-sign-out"></i>
+                    <span class="text-sm font-bold">Log Out</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIVERSAL CAMERA & RESULTS (Same logic as before but nicer UI) -->
+    <!-- CAMERA SCREEN -->
     <div id="screen-camera" class="screen bg-black z-50">
-        <!-- Live Video Feed -->
         <video id="video-feed" class="w-full h-full object-cover absolute inset-0" autoplay playsinline muted></video>
-        
-        <!-- UI Overlay -->
-        <div class="absolute inset-0 camera-overlay z-10 flex flex-col items-center justify-between py-12">
-            <!-- Top Controls -->
-            <div class="w-full px-6 flex justify-between items-center">
-                <button onclick="stopCamera()" class="h-10 w-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center">
-                    <i class="ph-bold ph-x text-xl"></i>
-                </button>
-                <div class="bg-black/40 backdrop-blur px-3 py-1 rounded-full border border-white/10">
-                    <span id="scan-mode-badge" class="text-xs text-brand-turquoise font-medium uppercase tracking-widest flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-brand-turquoise animate-pulse"></span> Analyzing
-                    </span>
-                </div>
-            </div>
-
-            <!-- Focus Area (Face Mode) -->
-            <div id="overlay-face" class="relative w-64 h-80 rounded-[45%] border-2 border-white/20 overflow-hidden">
-                <div class="absolute w-full h-1 bg-brand-turquoise shadow-[0_0_15px_#4DB6AC] animate-scan opacity-50"></div>
-                <div class="absolute top-4 left-0 right-0 text-center">
-                    <p class="text-sm font-medium text-white/80 drop-shadow-md">Center Face</p>
-                </div>
-            </div>
-
-            <!-- Focus Area (Product Mode) -->
-            <div id="overlay-product" class="hidden relative w-72 h-48 rounded-xl border-2 border-white/20 overflow-hidden">
-                <div class="absolute w-full h-1 bg-purple-400 shadow-[0_0_15px_#A855F7] animate-scan opacity-50"></div>
-                <div class="absolute bottom-4 left-0 right-0 text-center">
-                    <p class="text-sm font-medium text-white/80 drop-shadow-md">Scan Ingredients / Barcode</p>
-                </div>
-            </div>
-
-            <!-- Bottom Controls -->
-            <div class="flex flex-col items-center gap-6">
-                <p id="scan-instruction" class="text-white/60 text-sm">Hold steady for AI analysis</p>
-                <button onclick="simulateAnalysis()" class="h-20 w-20 rounded-full border-4 border-white flex items-center justify-center relative active:scale-95 transition">
-                    <div class="h-16 w-16 rounded-full bg-white"></div>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCREEN 4: LOADING -->
-    <div id="screen-loading" class="screen bg-brand-charcoal justify-center items-center flex-col z-50">
-        <div class="relative h-32 w-32">
-            <div class="absolute inset-0 rounded-full border-4 border-white/5"></div>
-            <div class="absolute inset-0 rounded-full border-4 border-t-brand-turquoise border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
-            <img src="https://i.postimg.cc/j5ZMTVNh/image.png" class="absolute inset-0 m-auto h-16 w-16 rounded-full object-cover opacity-50" onerror="this.style.display='none'">
-        </div>
-        <h2 id="loading-text" class="mt-8 text-xl font-bold font-poppins text-brand-sand">Processing Skin Map...</h2>
-        <p class="text-brand-text-light text-sm mt-2 animate-pulse">Cross-referencing 500k+ data points</p>
-    </div>
-
-    <!-- SCREEN 5: SKIN ANALYSIS RESULTS -->
-    <div id="screen-results-skin" class="screen bg-brand-charcoal fade-in z-40">
-        <div class="h-64 bg-gray-800 relative shrink-0">
-            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-70" alt="Scanned Skin">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/50 to-transparent"></div>
-            <button onclick="navTo('dashboard')" class="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center z-20">
-                <i class="ph-bold ph-arrow-left text-xl"></i>
-            </button>
-        </div>
-
-        <div class="px-6 -mt-16 relative z-10 pb-12">
-            <!-- Diagnosis Card -->
-            <div class="bg-brand-surface rounded-2xl p-6 border border-white/10 shadow-2xl">
-                <div class="flex justify-between items-start mb-2">
-                    <span class="bg-brand-turquoise/10 text-brand-turquoise px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Analysis Complete</span>
-                    <span class="text-brand-turquoise font-bold text-sm">94% Confidence</span>
-                </div>
-                <h1 class="text-3xl font-bold font-poppins text-brand-sand mb-1">Acne Vulgaris</h1>
-                <p class="text-brand-text-light text-sm">Severity: <span class="text-yellow-400 font-semibold">Moderate (Grade II)</span></p>
-                <p class="mt-4 text-sm text-brand-text-light leading-relaxed border-t border-white/5 pt-4">
-                    Detected inflammation and clogged pores. Common triggers include hormonal changes or comedogenic products.
-                </p>
-            </div>
-
-            <!-- HUMAN EXPERT CTA (The "Loop") -->
-            <div class="mt-6">
-                <h3 class="font-poppins font-semibold text-lg mb-3 flex items-center gap-2">
-                    <i class="ph-fill ph-stethoscope text-brand-terracotta"></i> Recommended Expert
-                </h3>
-                <div class="bg-gradient-to-r from-brand-surface to-brand-surface/50 border border-brand-terracotta/30 rounded-2xl p-4 flex gap-4 items-center relative overflow-hidden">
-                    <div class="absolute right-0 top-0 h-full w-1 bg-brand-terracotta"></div>
-                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" class="h-14 w-14 rounded-full object-cover border-2 border-brand-sand">
-                    <div class="flex-1">
-                        <h4 class="font-bold text-brand-sand text-sm">Dr. Rasheedah</h4>
-                        <p class="text-xs text-brand-text-light">Specialist in Melanin-Rich Skin</p>
-                        <div class="flex items-center gap-1 mt-1 text-[10px] text-brand-turquoise">
-                            <i class="ph-fill ph-star"></i> 4.9 (120 Reviews)
-                        </div>
-                    </div>
-                    <button onclick="navTo('consult')" class="bg-brand-terracotta text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
-                        Book
-                    </button>
-                </div>
-            </div>
-
-            <!-- AI Treatment Plan -->
-            <div class="mt-8">
-                <h3 class="font-poppins font-semibold text-lg mb-3">Next Steps</h3>
-                <div class="space-y-3">
-                    <div class="bg-white/5 rounded-xl p-4 flex gap-4 border border-white/5">
-                        <i class="ph-fill ph-prescription text-2xl text-brand-turquoise"></i>
-                        <div>
-                            <h4 class="font-semibold text-brand-sand text-sm">Use Salicylic Acid</h4>
-                            <p class="text-xs text-brand-text-light">Apply 2% concentration nightly.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white/5 rounded-xl p-4 flex gap-4 border border-white/5">
-                        <i class="ph-fill ph-prohibit text-2xl text-red-400"></i>
-                        <div>
-                            <h4 class="font-semibold text-brand-sand text-sm">Avoid Coconut Oil</h4>
-                            <p class="text-xs text-brand-text-light">High comedogenic rating detected.</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10 flex flex-col justify-between py-12">
+            <div class="px-6 flex justify-between items-center">
+                <button onclick="stopCamera()" class="h-10 w-10 rounded-full bg-white/10 backdrop-blur text-white flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
+                <span id="scan-mode-badge" class="px-3 py-1 rounded-full bg-black/40 backdrop-blur border border-white/10 text-xs font-bold text-brand-turquoise tracking-wide">AI Active</span>
             </div>
             
-            <button onclick="navTo('dashboard')" class="mt-8 w-full border border-white/10 text-brand-text-light font-medium py-4 rounded-full hover:bg-white/5 transition">
-                Return to Dashboard
-            </button>
+            <!-- Face Overlay -->
+            <div id="overlay-face" class="relative w-64 h-80 mx-auto rounded-[45%] border-2 border-white/30 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                <div class="absolute w-full h-1 bg-brand-turquoise/80 shadow-[0_0_20px_#4DB6AC] animate-scan"></div>
+            </div>
+            
+            <!-- Product Overlay -->
+            <div id="overlay-product" class="hidden relative w-72 h-48 mx-auto rounded-xl border-2 border-white/30 overflow-hidden">
+                <div class="absolute w-full h-1 bg-purple-400/80 shadow-[0_0_20px_#A855F7] animate-scan"></div>
+            </div>
+
+            <div class="flex flex-col items-center gap-6">
+                <p class="text-white/80 text-sm font-medium drop-shadow-md">Position clearly in frame</p>
+                <button onclick="simulateAnalysis()" class="h-20 w-20 rounded-full border-4 border-white/20 bg-white/10 backdrop-blur flex items-center justify-center active:scale-95 transition">
+                    <div class="h-16 w-16 rounded-full bg-white shadow-lg"></div>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- SCREEN 6: PRODUCT SCAN RESULTS -->
-    <div id="screen-results-product" class="screen bg-brand-charcoal fade-in z-40">
-        <div class="p-6 pt-12 text-center">
-            <div class="h-24 w-24 rounded-full bg-red-500/20 text-brand-danger border-4 border-brand-danger mx-auto flex items-center justify-center mb-6">
-                <i class="ph-bold ph-warning-octagon text-5xl"></i>
-            </div>
-            <h1 class="text-3xl font-bold font-poppins text-brand-sand">Caution Advised</h1>
-            <p class="text-brand-text-light mt-2">Harmful ingredients detected in this product.</p>
-
-            <div class="mt-8 bg-brand-surface rounded-2xl overflow-hidden text-left">
-                <div class="bg-red-500/10 p-4 border-b border-red-500/20 flex justify-between items-center">
-                    <span class="font-bold text-red-400 text-sm">Detected Toxin</span>
-                    <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded">High Risk</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-brand-sand">Hydroquinone</h3>
-                    <p class="text-sm text-brand-text-light mt-2 leading-relaxed">
-                        Long-term use can cause <strong>Ochronosis</strong> (permanent blue-black skin discoloration). Banned in multiple countries without prescription.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-6 text-left">
-                <h3 class="font-bold text-brand-sand mb-2">Safe Alternatives</h3>
-                <div class="bg-white/5 rounded-xl p-3 flex gap-3 items-center border border-white/5">
-                    <div class="h-10 w-10 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
-                        <i class="ph-bold ph-check"></i>
-                    </div>
-                    <div>
-                        <p class="text-sm font-semibold text-brand-sand">Kojic Acid Serum</p>
-                        <p class="text-xs text-brand-text-light">Natural brightener, safe for daily use.</p>
+    <!-- RESULTS SCREEN -->
+    <div id="screen-results-skin" class="screen bg-brand-charcoal fade-in z-40">
+        <div class="h-72 relative">
+            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-black/40"></div>
+            <button onclick="navTo('dashboard')" class="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center"><i class="ph-bold ph-arrow-left"></i></button>
+        </div>
+        <div class="px-6 -mt-10 relative z-10 pb-12">
+            <div class="glass-panel p-6 rounded-3xl shadow-2xl border-t border-white/10">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="h-2 w-2 rounded-full bg-brand-turquoise animate-pulse"></span>
+                        <span class="text-brand-turquoise text-xs font-bold uppercase tracking-wider">AI Confidence 94%</span>
                     </div>
                 </div>
+                <h1 class="text-3xl font-bold font-poppins text-brand-sand">Acne Vulgaris</h1>
+                <p class="text-gray-400 text-sm mt-1">Severity: <span class="text-yellow-400 font-bold">Grade II (Moderate)</span></p>
+                
+                <div class="mt-6 pt-6 border-t border-white/5">
+                    <h3 class="font-bold text-sm text-brand-sand mb-3">AI Recommendation</h3>
+                    <div class="bg-brand-terracotta/10 border border-brand-terracotta/20 rounded-xl p-4 flex gap-4">
+                        <i class="ph-fill ph-stethoscope text-2xl text-brand-terracotta"></i>
+                        <div>
+                            <p class="text-xs text-brand-text-light leading-relaxed">Based on the inflammation level, we recommend consulting a specialist to prevent scarring.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="navTo('consult')" class="w-full bg-brand-sand text-brand-charcoal font-bold py-4 rounded-xl mt-4 shadow-lg active:scale-95 transition">
+                    Book Dermatologist (₦15k)
+                </button>
             </div>
-
-            <button onclick="navTo('dashboard')" class="mt-12 w-full bg-brand-surface border border-white/10 text-white font-bold py-4 rounded-full">
-                Scan Another Product
-            </button>
         </div>
     </div>
 
-    <!-- SCREEN 7: CONSULTATION LIST -->
-    <div id="screen-consult" class="screen bg-brand-charcoal fade-in">
-        <div class="pt-8 pb-4 px-6 flex items-center gap-4 bg-brand-charcoal z-20 sticky top-0 border-b border-white/5">
-            <button onclick="navTo('dashboard')" class="h-10 w-10 rounded-full bg-brand-surface flex items-center justify-center text-white">
-                <i class="ph-bold ph-arrow-left"></i>
-            </button>
-            <h1 class="text-xl font-bold font-poppins text-brand-sand">TeleDermal Consult</h1>
+    <!-- Product Results Screen (Simplified for brevity) -->
+    <div id="screen-results-product" class="screen bg-brand-charcoal fade-in z-40 p-6 flex flex-col justify-center text-center">
+        <div class="h-24 w-24 rounded-full bg-red-500/10 text-red-500 border-2 border-red-500 mx-auto flex items-center justify-center mb-6 animate-pulse-slow">
+            <i class="ph-bold ph-warning-octagon text-4xl"></i>
         </div>
+        <h1 class="text-3xl font-bold font-poppins text-brand-sand">Warning</h1>
+        <p class="text-gray-400 mt-2">Hydroquinone detected.</p>
+        <button onclick="navTo('dashboard')" class="mt-12 w-full glass-panel py-4 rounded-xl font-bold">Close</button>
+    </div>
 
+    <!-- Consult Screen (Simplified) -->
+    <div id="screen-consult" class="screen fade-in">
+        <div class="pt-8 px-6 bg-brand-charcoal sticky top-0 z-20 pb-4 border-b border-white/5 flex gap-4 items-center">
+            <button onclick="navTo('dashboard')"><i class="ph-bold ph-arrow-left text-xl"></i></button>
+            <h1 class="text-xl font-bold font-poppins">Top Doctors</h1>
+        </div>
         <div class="p-6 space-y-4">
-            <p class="text-brand-text-light text-sm">Verified dermatologists specializing in African skin types.</p>
-
-            <!-- Doc 1 -->
-            <div class="bg-brand-surface p-4 rounded-2xl border border-white/5 flex gap-4">
+            <div class="glass-panel p-4 rounded-2xl flex gap-4">
                 <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" class="h-16 w-16 rounded-xl object-cover">
-                <div class="flex-1">
-                    <div class="flex justify-between items-start">
-                        <h3 class="font-bold text-brand-sand">Dr. Rasheedah</h3>
-                        <span class="text-brand-turquoise text-xs font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> 4.9</span>
-                    </div>
-                    <p class="text-xs text-brand-text-light mt-1">Lagos University Teaching Hospital</p>
-                    <div class="mt-3 flex justify-between items-center">
-                        <span class="text-brand-terracotta font-bold text-sm">₦15,000</span>
-                        <button class="bg-brand-sand text-brand-charcoal text-xs font-bold px-4 py-2 rounded-full">Book Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Doc 2 -->
-            <div class="bg-brand-surface p-4 rounded-2xl border border-white/5 flex gap-4 opacity-75">
-                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200" class="h-16 w-16 rounded-xl object-cover">
-                <div class="flex-1">
-                    <div class="flex justify-between items-start">
-                        <h3 class="font-bold text-brand-sand">Dr. Anand</h3>
-                        <span class="text-brand-turquoise text-xs font-bold flex items-center gap-1"><i class="ph-fill ph-star"></i> 5.0</span>
-                    </div>
-                    <p class="text-xs text-brand-text-light mt-1">Consultant Dermatologist</p>
-                    <div class="mt-3 flex justify-between items-center">
-                        <span class="text-brand-terracotta font-bold text-sm">₦20,000</span>
-                        <button class="bg-brand-surface border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full">Next Available: Mon</button>
-                    </div>
+                <div>
+                    <h3 class="font-bold text-brand-sand">Dr. Rasheedah</h3>
+                    <p class="text-xs text-brand-turquoise">Lagos • 4.9 Stars</p>
+                    <button class="mt-2 bg-brand-terracotta text-white text-xs font-bold px-4 py-1.5 rounded-full">Book Now</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- LOGIC -->
-    <script>
-        let currentMode = 'face'; // 'face' or 'product'
+    <!-- BOTTOM NAV -->
+    <div class="fixed bottom-0 left-0 right-0 bg-brand-charcoal/90 backdrop-blur-md border-t border-white/5 py-3 px-8 flex justify-between items-center z-50 safe-area-pb">
+        <button onclick="navTo('dashboard')" class="nav-item active flex flex-col items-center gap-1 text-gray-500 transition">
+            <i class="ph-fill ph-house text-2xl"></i>
+            <span class="text-[10px] font-medium">Home</span>
+        </button>
+        <button onclick="navTo('track')" class="nav-item flex flex-col items-center gap-1 text-gray-500 transition">
+            <i class="ph-bold ph-chart-bar text-2xl"></i>
+            <span class="text-[10px] font-medium">Track</span>
+        </button>
+        <button onclick="navTo('profile')" class="nav-item flex flex-col items-center gap-1 text-gray-500 transition">
+            <i class="ph-bold ph-user text-2xl"></i>
+            <span class="text-[10px] font-medium">Profile</span>
+        </button>
+    </div>
 
+    <script>
+        // Navigation Logic
+        let currentMode = 'face';
+        
         function navTo(screenId) {
+            // Hide all screens
             document.querySelectorAll('.screen').forEach(el => {
                 el.classList.remove('active-screen');
-                if (el.id === 'screen-camera') {
+                if(el.id === 'screen-camera') {
                     const video = document.getElementById('video-feed');
-                    if (video.srcObject) video.srcObject.getTracks().forEach(track => track.stop());
+                    if(video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
                 }
             });
+            // Show target
             document.getElementById('screen-' + screenId).classList.add('active-screen');
+            
+            // Update Bottom Nav UI
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            if(screenId === 'dashboard') document.querySelectorAll('.nav-item')[0].classList.add('active');
+            if(screenId === 'track') document.querySelectorAll('.nav-item')[1].classList.add('active');
+            if(screenId === 'profile') document.querySelectorAll('.nav-item')[2].classList.add('active');
         }
 
         async function startCamera(mode) {
             currentMode = mode;
             navTo('camera');
-            
-            // Toggle Overlays
             document.getElementById('overlay-face').style.display = mode === 'face' ? 'block' : 'none';
             document.getElementById('overlay-product').style.display = mode === 'product' ? 'block' : 'none';
-            document.getElementById('scan-mode-badge').innerHTML = mode === 'face' ? 
-                '<span class="w-2 h-2 rounded-full bg-brand-turquoise animate-pulse"></span> Face Scan' : 
-                '<span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> Product Scan';
             
             const video = document.getElementById('video-feed');
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
                 video.srcObject = stream;
-            } catch (err) {
-                alert("Please allow camera access for the demo.");
-            }
+            } catch(e) { alert("Camera access required for demo"); }
         }
 
         function stopCamera() { navTo('dashboard'); }
 
         function simulateAnalysis() {
-            const video = document.getElementById('video-feed');
-            if (video.srcObject) video.srcObject.getTracks().forEach(track => track.stop());
-
-            navTo('loading');
-            
-            // Customize loading text based on mode
-            const loadingText = document.getElementById('loading-text');
-            loadingText.innerText = currentMode === 'face' ? 'Mapping Skin Texture...' : 'Analyzing Ingredients...';
-
+            navTo('loading'); // Create a quick loading state if needed, or just delay
             setTimeout(() => {
-                if (currentMode === 'face') {
-                    navTo('results-skin');
-                } else {
-                    navTo('results-product');
-                }
-            }, 2500);
+                navTo(currentMode === 'face' ? 'results-skin' : 'results-product');
+            }, 2000);
         }
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AfriDam AI | Aesthetic intelligence for African skin</title>
+    <title>AfriDam AI | Aesthetic Intelligence for African Skin</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -33,240 +33,266 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { transition: background-color 0.5s ease, color 0.5s ease; overflow-x: hidden; width: 100%; }
+        body { 
+            transition: background-color 0.5s ease, color 0.5s ease; 
+            overflow-x: hidden; 
+            width: 100%; 
+            -webkit-font-smoothing: antialiased;
+        }
         
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1C1A19; }
+        ::-webkit-scrollbar-thumb { background: #E1784F; border-radius: 10px; }
+
         .dark body { background-color: #1C1A19; color: #F7F3EE; }
         .light body { background-color: #F7F3EE; color: #1C1A19; }
 
         .glass-nav { 
             backdrop-filter: blur(20px); 
-            background: rgba(28, 26, 25, 0.8); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+            background: rgba(28, 26, 25, 0.85); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
         }
         .light .glass-nav {
-            background: rgba(247, 243, 238, 0.8);
-            border: 1px solid rgba(28, 26, 25, 0.05);
+            background: rgba(247, 243, 238, 0.85);
+            border: 1px solid rgba(28, 26, 25, 0.08);
         }
 
         .hero-gradient {
-            background: radial-gradient(circle at 50% 0%, rgba(225, 120, 79, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(225, 120, 79, 0.15) 0%, transparent 75%);
         }
 
         .melanin-core {
             background: linear-gradient(135deg, #2D1B10 0%, #E1784F 100%);
-            border: 1px solid rgba(225, 120, 79, 0.2);
+            border: 1px solid rgba(225, 120, 79, 0.3);
+            box-shadow: 0 0 40px rgba(225, 120, 79, 0.2);
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        .hero-title { font-size: clamp(2.2rem, 10vw, 7rem); line-height: 1.1; letter-spacing: -0.02em; }
-        .stat-number { font-size: clamp(2.5rem, 10vw, 6.5rem); line-height: 1; letter-spacing: -0.05em; }
-        .section-title { font-size: clamp(1.8rem, 7vw, 4.5rem); line-height: 1.1; letter-spacing: -0.01em; }
+        .hero-title { font-size: clamp(2.5rem, 12vw, 7.5rem); line-height: 1.05; letter-spacing: -0.03em; }
+        .stat-number { font-size: clamp(3rem, 12vw, 7rem); line-height: 1; letter-spacing: -0.05em; }
+        .section-title { font-size: clamp(2rem, 8vw, 4.8rem); line-height: 1.1; letter-spacing: -0.02em; }
 
         .pulse-effect { animation: pulse-ring 4s infinite ease-in-out; }
         @keyframes pulse-ring {
-            0% { transform: scale(0.9); opacity: 0.4; }
-            50% { transform: scale(1); opacity: 0.15; }
-            100% { transform: scale(0.9); opacity: 0.4; }
+            0% { transform: scale(0.85); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(0.85); opacity: 0.5; }
         }
 
         .african-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L0 0h60L30 30zM0 60l30-30 30 30H0z' fill='%23E1784F' fill-opacity='0.02'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L0 0h60L30 30zM0 60l30-30 30 30H0z' fill='%23E1784F' fill-opacity='0.03'/%3E%3C/svg%3E");
         }
+
+        .btn-hover { transition: all 0.3s ease; }
+        .btn-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(225, 120, 79, 0.4); }
     </style>
 </head>
 <body class="font-inter font-light">
 
-    <header class="fixed top-0 left-0 right-0 z-[100] p-4 md:p-6" id="navbar">
-        <div class="container mx-auto">
-            <div class="glass-nav rounded-full px-6 py-3 flex justify-between items-center shadow-xl transition-all">
-                <a href="/" class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-brand-terracotta rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">A</span>
+    <header class="fixed top-0 left-0 right-0 z-[100] p-4 md:p-8" id="navbar">
+        <div class="container mx-auto max-w-7xl">
+            <div class="glass-nav rounded-full px-6 py-3 flex justify-between items-center shadow-2xl transition-all border">
+                <a href="/" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-terracotta rounded-full flex items-center justify-center shadow-inner">
+                        <span class="text-white font-bold text-lg">A</span>
                     </div>
-                    <span class="text-lg font-bold font-poppins tracking-tight text-brand-charcoal dark:text-brand-sand">AfriDam</span>
+                    <span class="text-xl font-bold font-poppins tracking-tighter text-brand-charcoal dark:text-brand-sand">AfriDam</span>
                 </a>
                 
-                <nav class="hidden lg:flex items-center space-x-8 text-xs font-medium text-brand-charcoal/70 dark:text-brand-sand/70">
-                    <a href="#vision" class="hover:text-brand-terracotta transition">Our technology</a>
-                    <a href="#ecosystem" class="hover:text-brand-terracotta transition">Care hub</a>
-                    <a href="#onboard" class="hover:text-brand-terracotta transition">Join us</a>
-                    <button onclick="toggleTheme()" class="ml-4 p-2 bg-brand-terracotta/10 rounded-full">🌓</button>
+                <nav class="hidden lg:flex items-center space-x-10 text-[13px] font-semibold uppercase tracking-widest text-brand-charcoal/70 dark:text-brand-sand/70">
+                    <a href="#vision" class="hover:text-brand-terracotta transition-colors">Technology</a>
+                    <a href="#ecosystem" class="hover:text-brand-terracotta transition-colors">Care Hub</a>
+                    <a href="#onboard" class="hover:text-brand-terracotta transition-colors">Join Us</a>
+                    <button onclick="toggleTheme()" class="ml-4 w-10 h-10 flex items-center justify-center bg-brand-terracotta/10 rounded-full hover:bg-brand-terracotta/20 transition-all">🌓</button>
                 </nav>
 
-                <div class="flex items-center gap-3">
-                    <a href="https://app.afridamai.com" class="hidden sm:block bg-brand-terracotta text-white text-[11px] font-semibold px-6 py-3 rounded-full hover:brightness-110 transition shadow-md">
-                        Launch app
+                <div class="flex items-center gap-4">
+                    <a href="https://app.afridamai.com" class="hidden sm:block bg-brand-terracotta text-white text-[12px] font-bold px-8 py-3.5 rounded-full btn-hover uppercase tracking-tighter">
+                        Launch Portal
                     </a>
-                    <button id="mobile-menu-button" class="lg:hidden text-brand-terracotta p-1">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <button id="mobile-menu-button" class="lg:hidden text-brand-terracotta p-2 bg-brand-terracotta/5 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden lg:hidden mx-4 mt-2 glass-nav rounded-3xl p-6 shadow-2xl">
-             <div class="flex flex-col space-y-5 text-center">
-                <a href="#vision" class="text-sm font-medium">Our technology</a>
-                <a href="#ecosystem" class="text-sm font-medium">Care hub</a>
-                <a href="#onboard" class="text-sm font-medium">Join as specialist/vendor</a>
-                <button onclick="toggleTheme()" class="text-sm font-medium">Switch appearance</button>
-                <a href="https://app.afridamai.com" class="bg-brand-terracotta text-white py-4 rounded-2xl text-xs font-bold shadow-lg">Open web app</a>
+        <div id="mobile-menu" class="hidden lg:hidden mx-4 mt-4 glass-nav rounded-[2rem] p-8 shadow-2xl border border-white/10 animate-in fade-in slide-in-from-top-4 duration-300">
+             <div class="flex flex-col space-y-6 text-center">
+                <a href="#vision" class="text-lg font-semibold" onclick="toggleMenu()">Our Technology</a>
+                <a href="#ecosystem" class="text-lg font-semibold" onclick="toggleMenu()">Care Hub</a>
+                <a href="#onboard" class="text-lg font-semibold" onclick="toggleMenu()">Join Specialist</a>
+                <button onclick="toggleTheme()" class="text-lg font-semibold py-2 border-y border-white/5">Switch Appearance</button>
+                <a href="https://app.afridamai.com" class="bg-brand-terracotta text-white py-5 rounded-2xl text-sm font-bold shadow-xl">Open Web App</a>
              </div>
         </div>
     </header>
 
     <main>
-        <section class="relative min-h-screen flex items-center justify-center hero-gradient pt-24 pb-16 african-pattern">
+        <section class="relative min-h-screen flex items-center justify-center hero-gradient pt-32 pb-20 african-pattern">
             <div class="container mx-auto px-6 text-center reveal">
-                <div class="inline-flex items-center space-x-2 bg-brand-turquoise/5 border border-brand-turquoise/20 px-4 py-2 rounded-full mb-8">
-                    <span class="w-1.5 h-1.5 bg-brand-turquoise rounded-full animate-pulse"></span>
-                    <span class="text-[10px] font-medium tracking-wider text-brand-turquoise">Melanin intelligence active</span>
+                <div class="inline-flex items-center space-x-3 bg-brand-turquoise/10 border border-brand-turquoise/30 px-6 py-2.5 rounded-full mb-10">
+                    <span class="w-2 h-2 bg-brand-turquoise rounded-full animate-pulse"></span>
+                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-turquoise">Melanin intelligence active</span>
                 </div>
                 
                 <h1 class="hero-title font-extrabold font-poppins text-brand-charcoal dark:text-brand-sand">
                     The future is <br> <span class="text-brand-terracotta italic">melanin-aware.</span>
                 </h1>
                 
-                <p class="mt-8 text-base md:text-xl max-w-2xl mx-auto text-brand-charcoal/60 dark:text-brand-sand/60 font-normal leading-relaxed">
+                <p class="mt-10 text-lg md:text-2xl max-w-3xl mx-auto text-brand-charcoal/70 dark:text-brand-sand/70 font-normal leading-relaxed">
                     Personalized skincare built for African families. Restore your glow with technology that understands your roots.
                 </p>
 
-                <div class="mt-10">
-                    <a href="https://app.afridamai.com" class="inline-block bg-brand-terracotta text-white font-bold text-sm px-10 py-5 rounded-full shadow-xl hover:translate-y-[-2px] transition-all">
-                        Start your skin journey
+                <div class="mt-12">
+                    <a href="https://app.afridamai.com" class="inline-block bg-brand-terracotta text-white font-bold text-base px-12 py-6 rounded-full shadow-2xl btn-hover">
+                        Start Your Skin Journey
                     </a>
                 </div>
 
-                <div class="mt-16 flex flex-col items-center gap-4 opacity-40">
-                    <p class="text-[10px] font-semibold tracking-widest">Mobile app coming soon</p>
-                    <div class="flex items-center gap-4 scale-90 dark:brightness-200">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="h-7">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-7">
+                <div class="mt-20 flex flex-col items-center gap-6 opacity-50 hover:opacity-100 transition-opacity">
+                    <p class="text-[11px] font-bold uppercase tracking-[0.3em]">Mobile experience coming soon</p>
+                    <div class="flex items-center gap-6 scale-110 dark:brightness-200">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="h-8">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-8">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="problem" class="py-20 md:py-32 bg-brand-charcoal text-white relative overflow-hidden transition-colors">
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-brand-terracotta font-semibold tracking-widest text-[11px]">The Care Gap</span>
-                    <h2 class="section-title font-bold font-poppins mt-3 text-brand-sand">African skin is often <br> overlooked by tech.</h2>
+        <section id="problem" class="py-24 md:py-40 bg-brand-charcoal text-white relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+                <div class="text-center mb-24 reveal">
+                    <span class="text-brand-terracotta font-bold tracking-[0.3em] text-[12px] uppercase">The Care Gap</span>
+                    <h2 class="section-title font-bold font-poppins mt-5 text-brand-sand">African skin is often <br> overlooked by tech.</h2>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <div class="reveal bg-white/5 border border-white/10 p-10 rounded-[2.5rem] text-center">
-                        <p class="text-[10px] font-medium tracking-widest text-brand-sand/40 mb-4 uppercase">Nigeria's specialist ratio</p>
-                        <div class="flex items-center justify-center gap-2">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    <div class="reveal bg-white/[0.03] border border-white/10 p-12 rounded-[3rem] text-center hover:bg-white/[0.06] transition-all">
+                        <p class="text-[12px] font-bold tracking-[0.2em] text-brand-sand/40 mb-6 uppercase">Nigeria's Specialist Ratio</p>
+                        <div class="flex items-center justify-center gap-3">
                             <span class="stat-number font-bold text-brand-terracotta">1</span>
-                            <span class="text-2xl md:text-5xl font-light text-brand-sand/20">:</span>
+                            <span class="text-4xl md:text-7xl font-thin text-brand-sand/10">:</span>
                             <span class="stat-number font-bold tracking-tighter text-brand-sand" id="stat-nigeria">1M</span>
                         </div>
-                        <p class="text-sm font-normal text-brand-sand/60 mt-4">Just one specialist for every million citizens.</p>
+                        <p class="text-base font-normal text-brand-sand/50 mt-6 max-w-xs mx-auto">Only one board-certified specialist for every million citizens.</p>
                     </div>
 
-                    <div class="reveal bg-white/5 border border-white/10 p-10 rounded-[2.5rem] text-center">
-                        <p class="text-[10px] font-medium tracking-widest text-brand-sand/40 mb-4 uppercase">Regional exclusion</p>
-                        <div class="flex items-center justify-center gap-2">
+                    <div class="reveal bg-white/[0.03] border border-white/10 p-12 rounded-[3rem] text-center hover:bg-white/[0.06] transition-all">
+                        <p class="text-[12px] font-bold tracking-[0.2em] text-brand-sand/40 mb-6 uppercase">Regional Exclusion</p>
+                        <div class="flex items-center justify-center gap-3">
                             <span class="stat-number font-bold text-brand-turquoise">></span>
                             <span class="stat-number font-bold tracking-tighter text-brand-sand" id="stat-africa">500</span>
-                            <span class="stat-number font-bold text-brand-turquoise text-2xl md:text-5xl">M</span>
+                            <span class="stat-number font-bold text-brand-turquoise text-3xl md:text-6xl">M</span>
                         </div>
-                        <p class="text-sm font-normal text-brand-sand/60 mt-4">Half a billion Africans lack accurate skin-tech data.</p>
+                        <p class="text-base font-normal text-brand-sand/50 mt-6 max-w-xs mx-auto">Half a billion Africans lack access to melanin-accurate skin data.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="vision" class="py-20 md:py-32 relative">
-            <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <section id="vision" class="py-24 md:py-40 relative">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div class="reveal relative aspect-square max-w-md mx-auto lg:max-w-none w-full">
-                        <div class="absolute inset-0 bg-brand-terracotta/5 blur-[80px] rounded-full pulse-effect"></div>
-                        <div class="melanin-core w-full h-full rounded-[3rem] relative overflow-hidden flex flex-col items-center justify-center text-center p-8 shadow-2xl">
-                            <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="absolute inset-0 bg-brand-terracotta/10 blur-[100px] rounded-full pulse-effect"></div>
+                        <div class="melanin-core w-full h-full rounded-[4rem] relative overflow-hidden flex flex-col items-center justify-center text-center p-12 shadow-2xl">
+                            <div class="absolute inset-0 bg-black/40"></div>
                             <div class="relative z-10 text-white">
-                                <h3 class="text-4xl md:text-6xl font-bold font-poppins italic">Decoded.</h3>
-                                <div class="w-12 h-1 bg-brand-terracotta mx-auto rounded-full mt-4"></div>
-                                <p class="mt-6 text-[10px] font-medium tracking-[0.3em] opacity-60">Engineered in Lagos</p>
+                                <h3 class="text-5xl md:text-7xl font-bold font-poppins italic leading-none">Decoded.</h3>
+                                <div class="w-16 h-1.5 bg-brand-terracotta mx-auto rounded-full mt-6"></div>
+                                <p class="mt-8 text-[11px] font-bold tracking-[0.4em] uppercase opacity-70">Engineered in Lagos</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="reveal">
-                        <span class="text-brand-terracotta font-semibold tracking-widest text-[11px]">Representation matters</span>
-                        <h2 class="section-title font-bold font-poppins text-brand-charcoal dark:text-brand-sand mt-4 leading-tight">Dignity in every pixel.</h2>
-                        <p class="mt-6 text-lg text-brand-charcoal/70 dark:text-brand-sand/70 leading-relaxed">
-                            Our AI is trained specifically on local skin data. We ensure every result is accurate, respectful, and scientifically sound for our unique skin tones.
+                    <div class="reveal lg:pl-10">
+                        <span class="text-brand-terracotta font-bold tracking-[0.3em] text-[12px] uppercase">Representation Matters</span>
+                        <h2 class="section-title font-bold font-poppins text-brand-charcoal dark:text-brand-sand mt-6 leading-[1.1]">Dignity in every pixel.</h2>
+                        <p class="mt-8 text-lg md:text-xl text-brand-charcoal/70 dark:text-brand-sand/70 leading-relaxed font-normal">
+                            Our AI isn't just "trained"—it's cultured. We use localized skin data to ensure every scan is accurate, respectful, and scientifically sound for our unique African tones.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="ecosystem" class="py-20 bg-brand-sand/50 dark:bg-transparent transition-colors">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title font-bold font-poppins text-brand-charcoal dark:text-brand-sand mb-16">The care hub.</h2>
-                <div class="grid md:grid-cols-3 gap-6 text-left">
-                    <div class="reveal bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 p-10 rounded-[2.5rem] shadow-xl flex flex-col justify-between min-h-[320px]">
+        <section id="ecosystem" class="py-24 bg-brand-sand/50 dark:bg-white/[0.02] transition-colors">
+            <div class="container mx-auto px-6 text-center max-w-7xl">
+                <h2 class="section-title font-bold font-poppins text-brand-charcoal dark:text-brand-sand mb-20">The Care Hub.</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="reveal group bg-white dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-12 rounded-[3rem] shadow-2xl flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-all">
                         <div>
-                            <h3 class="text-2xl font-bold text-brand-charcoal dark:text-brand-sand">AI scanner</h3>
-                            <p class="opacity-60 text-sm mt-4">Analyze skin texture and health instantly from your home.</p>
+                            <div class="w-14 h-14 bg-brand-terracotta/10 rounded-2xl flex items-center justify-center mb-8">
+                                <span class="text-2xl">📸</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-charcoal dark:text-brand-sand">AI Scanner</h3>
+                            <p class="opacity-60 text-base mt-4 leading-relaxed">Instant skin texture and health analysis from the comfort of your home.</p>
                         </div>
-                        <a href="https://app.afridamai.com/ai-scanner" class="text-brand-terracotta font-bold text-xs tracking-wider border-b border-brand-terracotta w-max pb-1">Open scanner</a>
+                        <a href="https://app.afridamai.com/ai-scanner" class="text-brand-terracotta font-bold text-[11px] uppercase tracking-widest border-b-2 border-brand-terracotta/20 group-hover:border-brand-terracotta w-max pb-2 transition-all">Open scanner</a>
                     </div>
                     
-                    <div class="reveal bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 p-10 rounded-[2.5rem] shadow-xl flex flex-col justify-between min-h-[320px]">
+                    <div class="reveal group bg-white dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-12 rounded-[3rem] shadow-2xl flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-all">
                         <div>
-                            <h3 class="text-2xl font-bold text-brand-charcoal dark:text-brand-sand">Label verify</h3>
-                            <p class="opacity-60 text-sm mt-4">Easily identify child-safe products and safe ingredients.</p>
+                            <div class="w-14 h-14 bg-brand-turquoise/10 rounded-2xl flex items-center justify-center mb-8">
+                                <span class="text-2xl">🛡️</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-charcoal dark:text-brand-sand">Label Verify</h3>
+                            <p class="opacity-60 text-base mt-4 leading-relaxed">Instantly identify child-safe products and decode complex chemical ingredients.</p>
                         </div>
-                        <a href="https://app.afridamai.com/ai-checker" class="text-brand-turquoise font-bold text-xs tracking-wider border-b border-brand-turquoise w-max pb-1">Check labels</a>
+                        <a href="https://app.afridamai.com/ai-checker" class="text-brand-turquoise font-bold text-[11px] uppercase tracking-widest border-b-2 border-brand-turquoise/20 group-hover:border-brand-turquoise w-max pb-2 transition-all">Check labels</a>
                     </div>
 
-                    <div class="reveal bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 p-10 rounded-[2.5rem] shadow-xl flex flex-col justify-between min-h-[320px]">
+                    <div class="reveal group bg-white dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-12 rounded-[3rem] shadow-2xl flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-all">
                         <div>
+                            <div class="w-14 h-14 bg-brand-terracotta/10 rounded-2xl flex items-center justify-center mb-8">
+                                <span class="text-2xl">🛍️</span>
+                            </div>
                             <h3 class="text-2xl font-bold text-brand-charcoal dark:text-brand-sand">Marketplace</h3>
-                            <p class="opacity-60 text-sm mt-4">Shop verified skincare from our network of trusted vendors.</p>
+                            <p class="opacity-60 text-base mt-4 leading-relaxed">Shop verified skincare from our network of pre-vetted, authentic vendors.</p>
                         </div>
-                        <a href="https://app.afridamai.com/marketplace" class="text-brand-terracotta font-bold text-xs tracking-wider border-b border-brand-terracotta w-max pb-1">Shop now</a>
+                        <a href="https://app.afridamai.com/marketplace" class="text-brand-terracotta font-bold text-[11px] uppercase tracking-widest border-b-2 border-brand-terracotta/20 group-hover:border-brand-terracotta w-max pb-2 transition-all">Shop now</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="onboard" class="py-20 md:py-32">
-            <div class="container mx-auto px-6">
-                <div class="bg-brand-terracotta rounded-[3rem] p-10 md:p-20 text-white reveal shadow-2xl relative overflow-hidden">
+        <section id="onboard" class="py-24 md:py-40">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="bg-brand-terracotta rounded-[4rem] p-12 md:p-24 text-white reveal shadow-[0_30px_100px_-20px_rgba(225,120,79,0.5)] relative overflow-hidden">
+                    <div class="absolute right-0 bottom-0 opacity-10 scale-150 pointer-events-none">
+                         <svg width="400" height="400" viewBox="0 0 60 60"><path d="M30 30L0 0h60L30 30zM0 60l30-30 30 30H0z" fill="white"/></svg>
+                    </div>
                     <div class="relative z-10 max-w-3xl">
-                        <h2 class="text-3xl md:text-5xl font-bold font-poppins mb-6">Build the ecosystem with us</h2>
-                        <p class="text-white/80 text-lg mb-10">Whether you are a certified skin specialist or a vendor selling authentic products, there is a place for you in our mission.</p>
+                        <h2 class="text-4xl md:text-6xl font-bold font-poppins mb-8 leading-tight">Build the ecosystem with us</h2>
+                        <p class="text-white/90 text-lg md:text-xl mb-12 font-normal leading-relaxed">Join the movement. Whether you are a certified specialist or a vendor of authentic products, help us bridge the gap.</p>
                         
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="https://specialist.afridamai.com" class="bg-white text-brand-terracotta px-8 py-4 rounded-full font-bold text-sm text-center transition hover:bg-brand-sand">Join as a specialist</a>
-                            <a href="https://vendor.afridamai.com" class="bg-brand-charcoal text-white px-8 py-4 rounded-full font-bold text-sm text-center transition hover:brightness-125">Join as a vendor</a>
+                        <div class="flex flex-col sm:flex-row gap-5">
+                            <a href="https://specialist.afridamai.com" class="bg-white text-brand-terracotta px-12 py-5 rounded-full font-bold text-sm text-center transition-all hover:bg-brand-sand hover:scale-105">Join as Specialist</a>
+                            <a href="https://vendor.afridamai.com" class="bg-brand-charcoal text-white px-12 py-5 rounded-full font-bold text-sm text-center transition-all hover:brightness-125 hover:scale-105">Join as Vendor</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="founder" class="py-20 md:py-32 bg-brand-sand dark:bg-brand-charcoal transition-colors relative african-pattern">
-            <div class="container mx-auto px-6">
-                <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-20">
-                    <div class="reveal w-48 h-48 md:w-80 md:h-80 shrink-0 rounded-[2.5rem] overflow-hidden border-4 border-brand-terracotta/20 shadow-2xl">
-                         <img src="https://i.postimg.cc/j5ZMTVNh/image.png" alt="Ogirima Obey" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+        <section id="founder" class="py-24 md:py-40 bg-brand-sand dark:bg-brand-charcoal transition-colors relative african-pattern">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-24">
+                    <div class="reveal group w-64 h-64 md:w-[450px] md:h-[450px] shrink-0 rounded-[4rem] overflow-hidden border-[12px] border-brand-terracotta/10 shadow-3xl">
+                         <img src="https://i.postimg.cc/j5ZMTVNh/image.png" alt="Ogirima Obey" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-[1.5s] ease-in-out scale-110 group-hover:scale-100">
                     </div>
                     <div class="reveal text-center md:text-left">
-                        <h2 class="text-3xl md:text-5xl font-bold font-poppins text-brand-charcoal dark:text-brand-sand">Ogirima Obey</h2>
-                        <p class="text-brand-terracotta font-semibold tracking-widest text-[11px] mt-2 uppercase">Founder & AI Architect</p>
-                        <p class="mt-8 text-xl md:text-2xl font-light italic text-brand-charcoal/70 dark:text-brand-sand/70 leading-relaxed border-l-4 border-brand-turquoise pl-6 md:pl-10">
+                        <span class="text-brand-terracotta font-bold tracking-[0.3em] text-[12px] uppercase">Founder & AI Architect</span>
+                        <h2 class="text-4xl md:text-7xl font-bold font-poppins text-brand-charcoal dark:text-brand-sand mt-4">Ogirima Obey</h2>
+                        <p class="mt-10 text-xl md:text-3xl font-light italic text-brand-charcoal/70 dark:text-brand-sand/70 leading-relaxed border-l-4 border-brand-turquoise pl-8 md:pl-12">
                             "AfriDam is a statement that technology must serve every human being, regardless of their skin tone or location."
                         </p>
                     </div>
@@ -275,47 +301,57 @@
         </section>
     </main>
 
-    <footer class="py-20 border-t border-black/5 dark:border-white/5 bg-brand-charcoal text-white">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 text-center md:text-left">
-                <div class="col-span-2 space-y-4">
-                    <span class="text-2xl font-bold font-poppins tracking-tight">AfriDam <span class="text-brand-terracotta">AI</span></span>
-                    <p class="opacity-40 text-xs font-medium tracking-wide leading-relaxed max-w-xs mx-auto md:mx-0">Built in Lagos for the world. Protecting your unique glow with aesthetic intelligence.</p>
+    <footer class="py-24 bg-brand-charcoal text-white border-t border-white/5">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid md:grid-cols-4 gap-16 text-center md:text-left">
+                <div class="col-span-2 space-y-6">
+                    <span class="text-3xl font-bold font-poppins tracking-tighter">AfriDam <span class="text-brand-terracotta">AI</span></span>
+                    <p class="opacity-40 text-sm font-medium leading-relaxed max-w-sm mx-auto md:mx-0">Built in Lagos for the world. Protecting your unique glow with advanced aesthetic intelligence.</p>
                 </div>
                 <div>
-                    <h4 class="text-[11px] font-bold tracking-widest text-brand-terracotta mb-6 uppercase">Resources</h4>
-                    <nav class="flex flex-col space-y-3 text-xs font-medium opacity-60">
-                        <a href="https://app.afridamai.com" class="hover:text-brand-terracotta transition">Web portal</a>
-                        <a href="https://app.afridamai.com/contact" class="hover:text-brand-terracotta transition">Contact hub</a>
+                    <h4 class="text-[12px] font-bold tracking-[0.2em] text-brand-terracotta mb-8 uppercase">Resources</h4>
+                    <nav class="flex flex-col space-y-4 text-sm font-semibold opacity-50">
+                        <a href="https://app.afridamai.com" class="hover:text-brand-terracotta transition-colors">Web Portal</a>
+                        <a href="https://app.afridamai.com/contact" class="hover:text-brand-terracotta transition-colors">Contact Hub</a>
+                        <a href="#" class="hover:text-brand-terracotta transition-colors">Privacy Policy</a>
                     </nav>
                 </div>
                 <div>
-                    <h4 class="text-[11px] font-bold tracking-widest text-brand-turquoise mb-6 uppercase">Contact</h4>
-                    <div class="text-xs font-medium opacity-60 space-y-3">
-                        <p>hello@afridamai.com</p>
+                    <h4 class="text-[12px] font-bold tracking-[0.2em] text-brand-turquoise mb-8 uppercase">Contact</h4>
+                    <div class="text-sm font-semibold opacity-50 space-y-4">
+                        <p class="hover:text-brand-turquoise transition-colors cursor-pointer">hello@afridamai.com</p>
                         <p>Lagos, Nigeria</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-20 pt-8 border-t border-white/5 opacity-20 text-center text-[10px] tracking-[0.4em] font-medium">
-                PROTECTING YOUR GLOW.
+            <div class="mt-32 pt-10 border-t border-white/5 opacity-20 text-center text-[11px] tracking-[0.5em] font-bold uppercase">
+                &copy; 2026 AfriDam AI. Protecting Your Glow.
             </div>
         </div>
     </footer>
 
     <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        menuBtn.onclick = toggleMenu;
+
         function toggleTheme() {
             const isDark = document.documentElement.classList.toggle('dark');
-            if (isDark) {
-                document.documentElement.classList.remove('light');
-            } else {
-                document.documentElement.classList.add('light');
-            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
+        // Value Animation Logic
         function animateValue(id, start, end, duration, isMillion = false) {
             const obj = document.getElementById(id);
-            if (!obj) return;
+            if (!obj || obj.dataset.animated === "true") return;
+            obj.dataset.animated = "true";
+            
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
@@ -333,23 +369,22 @@
             window.requestAnimationFrame(step);
         }
 
+        // Intersection Observer for Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     if (entry.target.id === 'problem') {
-                        animateValue("stat-nigeria", 0, 1000000, 1500, true);
-                        animateValue("stat-africa", 0, 500, 1500, false);
+                        setTimeout(() => {
+                            animateValue("stat-nigeria", 0, 1000000, 2000, true);
+                            animateValue("stat-africa", 0, 500, 2000, false);
+                        }, 300);
                     }
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('.reveal, #problem').forEach(el => observer.observe(el));
-
-        const menuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
     </script>
 </body>
 </html>
